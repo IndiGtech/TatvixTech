@@ -52,7 +52,7 @@ export default function CloudDashboard({ isActive }: CloudDashboardProps) {
     }, [logs]);
 
     return (
-        <div className="relative w-full h-[400px] bg-[#0d121f] border border-white/10 rounded-2xl flex flex-col overflow-hidden shadow-2xl">
+        <div className="relative w-full h-[400px] bg-bg border border-white/10 rounded-2xl flex flex-col overflow-hidden shadow-2xl">
             {/* Header */}
             <div className="h-10 border-b border-white/10 bg-white/5 flex items-center px-4 justify-between">
                 <div className="flex items-center gap-2">

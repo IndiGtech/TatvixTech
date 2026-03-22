@@ -32,20 +32,20 @@ const industries = [
 
 export default function IndustriesSection() {
     return (
-        <section id="industries" className="py-24 relative overflow-hidden">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="industries" className="py-24 relative overflow-hidden bg-white/70 dark:bg-transparent backdrop-blur-xl border-y border-slate-200 dark:border-white/5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
                     <div className="max-w-xl">
-                        <h2 className="text-3xl md:text-5xl font-heading font-bold text-white mb-4">
+                        <h2 className="text-3xl md:text-5xl font-heading font-bold text-slate-900 dark:text-white mb-4">
                             Industries We Serve
                         </h2>
-                        <p className="text-lg text-muted">
+                        <p className="text-lg text-slate-800 dark:text-slate-200">
                             Delivering specialized embedded solutions across diverse sectors.
                         </p>
                     </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 md:mb-0">
                     {industries.map((industry, index) => (
                         <IndustryCard
                             key={industry.name}

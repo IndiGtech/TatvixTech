@@ -24,14 +24,71 @@ export default function HeroIllustration() {
             {/* Main Stage */}
             <div className="relative w-[500px] h-[500px] perspective-[2000px]">
 
+                {/* --- Background PCB Traces --- */}
+                <svg className="absolute inset-0 w-full h-full opacity-60 dark:opacity-30" viewBox="0 0 500 500">
+                    <motion.path 
+                        d="M 100,50 L 150,100 L 200,100 L 220,150" 
+                        fill="none" 
+                        className="stroke-cyan-600 dark:stroke-cyan-400"
+                        strokeWidth="2" 
+                        strokeLinecap="square"
+                        strokeLinejoin="miter"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: [0, 1, 1, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                    />
+                    <motion.path 
+                        d="M 400,450 L 350,400 L 300,400 L 280,350" 
+                        fill="none" 
+                        className="stroke-cyan-600 dark:stroke-cyan-400"
+                        strokeWidth="2" 
+                        strokeLinecap="square"
+                        strokeLinejoin="miter"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: [0, 1, 1, 0] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "linear", delay: 1 }}
+                    />
+                    <motion.path 
+                        d="M 50,400 L 100,350 L 100,300 L 150,250" 
+                        fill="none" 
+                        className="stroke-purple-600 dark:stroke-purple-400"
+                        strokeWidth="2" 
+                        strokeLinecap="square"
+                        strokeLinejoin="miter"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: [0, 1, 1, 0] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "linear", delay: 0.5 }}
+                    />
+                    <motion.path 
+                        d="M 450,100 L 400,150 L 400,200 L 350,250" 
+                        fill="none" 
+                        className="stroke-purple-600 dark:stroke-purple-400"
+                        strokeWidth="2" 
+                        strokeLinecap="square"
+                        strokeLinejoin="miter"
+                        initial={{ pathLength: 0 }}
+                        animate={{ pathLength: [0, 1, 1, 0] }}
+                        transition={{ duration: 5, repeat: Infinity, ease: "linear", delay: 1.5 }}
+                    />
+                    {/* Pads */}
+                    <circle cx="100" cy="50" r="3" className="fill-cyan-600 dark:fill-cyan-400" />
+                    <circle cx="220" cy="150" r="4" className="fill-cyan-600 dark:fill-cyan-400" />
+                    <circle cx="400" cy="450" r="3" className="fill-cyan-600 dark:fill-cyan-400" />
+                    <circle cx="280" cy="350" r="4" className="fill-cyan-600 dark:fill-cyan-400" />
+                    <circle cx="50" cy="400" r="3" className="fill-purple-600 dark:fill-purple-400" />
+                    <circle cx="150" cy="250" r="4" className="fill-purple-600 dark:fill-purple-400" />
+                    <circle cx="450" cy="100" r="3" className="fill-purple-600 dark:fill-purple-400" />
+                    <circle cx="350" cy="250" r="4" className="fill-purple-600 dark:fill-purple-400" />
+                </svg>
+
                 {/* --- 0. Orbit Ring (Connecting Icons) --- */}
                 {/* Icons are at radius 210px. Container 500px. Inset = (500 - 420) / 2 = 40px */}
                 <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-[40px] rounded-full border border-dashed border-cyan-500/20"
+                    className="absolute inset-[40px] rounded-full border border-dashed border-cyan-600/40 dark:border-cyan-500/20"
                 />
-                <div className="absolute inset-[40px] rounded-full border border-white/5" /> {/* Static base track */}
+                <div className="absolute inset-[40px] rounded-full border border-black/5 dark:border-white/5" /> {/* Static base track */}
 
                 {/* --- 1. The Gyroscopic Core --- */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] flex items-center justify-center transform-style-3d z-20">
@@ -40,14 +97,14 @@ export default function HeroIllustration() {
                     <motion.div
                         animate={{ scale: [1, 1.1, 1], opacity: [0.8, 1, 0.8] }}
                         transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-300/30 via-blue-500/10 to-transparent blur-xl"
+                        className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-400/40 dark:from-cyan-300/30 via-blue-500/20 dark:via-blue-500/10 to-transparent blur-xl"
                     />
 
                     {/* Ring 1 - Horizontal Orbit */}
                     <motion.div
                         animate={{ rotateZ: 360, rotateX: 65 }}
                         transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                        className="absolute inset-0 rounded-full border-[1px] border-cyan-400/30 border-t-cyan-200/80 shadow-[0_0_15px_rgba(0,255,255,0.2)]"
+                        className="absolute inset-0 rounded-full border-[1px] border-cyan-600/40 dark:border-cyan-400/30 border-t-cyan-500/80 dark:border-t-cyan-200/80 shadow-[0_0_15px_rgba(0,255,255,0.4)] dark:shadow-[0_0_15px_rgba(0,255,255,0.2)]"
                         style={{ rotateX: 65 }}
                     />
 
@@ -55,7 +112,7 @@ export default function HeroIllustration() {
                     <motion.div
                         animate={{ rotateZ: -360, rotateY: 65 }}
                         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                        className="absolute inset-[15px] rounded-full border-[1px] border-blue-400/30 border-l-blue-200/80 shadow-[0_0_15px_rgba(50,50,255,0.2)]"
+                        className="absolute inset-[15px] rounded-full border-[1px] border-blue-600/40 dark:border-blue-400/30 border-l-blue-500/80 dark:border-l-blue-200/80 shadow-[0_0_15px_rgba(50,50,255,0.4)] dark:shadow-[0_0_15px_rgba(50,50,255,0.2)]"
                         style={{ rotateY: 65 }}
                     />
 
@@ -63,11 +120,11 @@ export default function HeroIllustration() {
                     <motion.div
                         animate={{ rotateZ: 360, rotateX: -45, rotateY: 45 }}
                         transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                        className="absolute inset-[40px] rounded-full border-[2px] border-dashed border-white/20"
+                        className="absolute inset-[40px] rounded-full border-[2px] border-dashed border-black/20 dark:border-white/20"
                     />
 
                     {/* Central Energy Singularity */}
-                    <div className="absolute w-[40px] h-[40px] bg-white rounded-full shadow-[0_0_40px_rgba(0,255,255,0.8)] z-10 animate-pulse" />
+                    <div className="absolute w-[40px] h-[40px] bg-cyan-100 dark:bg-white rounded-full shadow-[0_0_40px_rgba(0,255,255,0.8)] z-10 animate-pulse" />
                     <div className="absolute w-[20px] h-[20px] bg-cyan-300 rounded-full blur-[2px] z-20" />
 
                 </div>
@@ -103,7 +160,7 @@ function DataBeam({ angle, radius, delay }: { angle: number, radius: number, del
             }}
         >
             <motion.div
-                className="w-full h-full bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"
+                className="w-full h-full bg-gradient-to-r from-transparent via-cyan-500/80 dark:via-cyan-400/50 to-transparent"
                 animate={{
                     opacity: [0.3, 1, 0.3],
                     scaleX: [0.8, 1, 0.8],
@@ -131,8 +188,8 @@ function Satellite({ icon, angle, radius, delay }: { icon: React.ReactNode, labe
                 <div className="absolute inset-0 bg-cyan-500/20 rounded-2xl blur-lg transition-opacity duration-300 opacity-50 group-hover:opacity-100" />
 
                 {/* Glass Container */}
-                <div className="relative p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.3)] flex flex-col items-center justify-center gap-2 transition-transform duration-300 group-hover:scale-110 group-hover:border-cyan-400/50 group-hover:bg-white/10">
-                    <div className="text-cyan-100 group-hover:text-cyan-300 drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]">
+                <div className="relative p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-lg md:shadow-[0_0_20px_rgba(0,0,0,0.3)] flex flex-col items-center justify-center gap-2 transition-transform duration-300 group-hover:scale-110 group-hover:border-cyan-400/50 group-hover:bg-white/10">
+                    <div className="text-cyan-600 dark:text-cyan-100 group-hover:text-cyan-500 dark:group-hover:text-cyan-300 drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]">
                         {icon}
                     </div>
                     {/* Optional Label (Hidden by default, reveal on larger screens or hover if needed? Kept hidden for clean 'Icon only' look or minimal label) */}

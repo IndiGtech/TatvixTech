@@ -69,10 +69,10 @@ const technologies = [
 
 export default function TechBadges() {
     return (
-        <div className="relative w-full py-16 overflow-hidden bg-white/[0.02]">
-            {/* Fade Edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0A0E1A] to-transparent z-10" />
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0A0E1A] to-transparent z-10" />
+        <div className="relative w-full py-16 overflow-hidden bg-gradient-to-br from-white/95 via-white/90 to-white/80 dark:from-white/[0.15] dark:via-white/[0.12] dark:to-white/[0.08] backdrop-blur-xl border-y border-white/40 dark:border-white/15 shadow-xl shadow-slate-200/30 dark:shadow-none">
+            {/* Fade Edges with glass effect */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white/90 via-white/60 to-transparent dark:from-white/[0.12] dark:via-white/[0.06] dark:to-transparent backdrop-blur-xl z-10" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white/90 via-white/60 to-transparent dark:from-white/[0.12] dark:via-white/[0.06] dark:to-transparent backdrop-blur-xl z-10" />
 
             <div className="flex w-full">
                 <motion.div
@@ -91,11 +91,10 @@ export default function TechBadges() {
                             className="flex flex-col items-center justify-center gap-4 group cursor-pointer"
                         >
                             <div
-                                className="relative p-4 rounded-xl bg-white/5 border border-white/10 group-hover:bg-white/10 transition-all duration-300 transform group-hover:-translate-y-1 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]"
-                                style={{ borderColor: "rgba(255,255,255,0.1)" }}
+                                className="relative p-4 rounded-xl bg-white/70 dark:bg-white/[0.15] backdrop-blur-xl border border-white/80 dark:border-white/[0.25] group-hover:bg-white/90 dark:group-hover:bg-white/[0.25] transition-all duration-300 transform group-hover:-translate-y-1 shadow-[0_8px_32px_rgba(31,38,135,0.25)] dark:shadow-[0_8px_32px_rgba(255,255,255,0.06)] group-hover:shadow-[0_12px_40px_rgba(31,38,135,0.40)] dark:group-hover:shadow-[0_12px_40px_rgba(255,255,255,0.15)]"
                             >
                                 <div
-                                    className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center transition-all duration-300 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100"
+                                    className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center transition-all duration-300 filter grayscale-[0.3] opacity-85 group-hover:grayscale-0 group-hover:opacity-100 contrast-[1.1] group-hover:contrast-[1.2]"
                                 >
                                     <div
                                         className="w-full h-full"
@@ -106,7 +105,7 @@ export default function TechBadges() {
                                 </div>
                             </div>
                             <span
-                                className="text-xs md:text-sm font-medium text-gray-500 group-hover:text-primary transition-colors duration-300"
+                                className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400 group-hover:text-gray-800 dark:group-hover:text-gray-200 transition-colors duration-300"
                             >
                                 {tech.name}
                             </span>

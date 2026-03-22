@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480" fill="none">
+  <rect width="800" height="480" rx="24" fill="#0A0E1A"/>
+  <rect x="280" y="140" width="240" height="200" rx="80" stroke="#8B5CF6" stroke-opacity="0.4" stroke-width="2" fill="rgba(139,92,246,0.08)"/>
+  <rect x="340" y="200" width="120" height="80" rx="12" stroke="#00D9FF" stroke-opacity="0.35" fill="rgba(0,217,255,0.05)"/>
+  <text x="400" y="400" text-anchor="middle" fill="#8B9DB3" font-family="system-ui,sans-serif" font-size="18">Placeholder  wearable</text>
+</svg>

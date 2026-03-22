@@ -2,8 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronRight } from "lucide-react";
-import Link from "next/link";
 import { useEffect } from "react";
+import HomeSectionLink from "./HomeSectionLink";
 
 interface MobileMenuProps {
     isOpen: boolean;
@@ -81,14 +81,14 @@ export default function MobileMenu({ isOpen, onClose, links }: MobileMenuProps) 
                         <nav className="flex flex-col gap-6">
                             {links.map((link) => (
                                 <motion.div key={link.name} variants={itemVariants}>
-                                    <Link
+                                    <HomeSectionLink
                                         href={link.href}
-                                        onClick={onClose}
+                                        onNavigate={onClose}
                                         className="group flex items-center justify-between text-2xl font-heading font-medium text-text hover:text-primary transition-colors"
                                     >
                                         <span>{link.name}</span>
                                         <ChevronRight className="w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-primary" />
-                                    </Link>
+                                    </HomeSectionLink>
                                     <div className="mt-4 h-px w-full bg-gradient-to-r from-white/10 to-transparent" />
                                 </motion.div>
                             ))}
@@ -105,13 +105,13 @@ export default function MobileMenu({ isOpen, onClose, links }: MobileMenuProps) 
                                 <p className="text-muted mb-4 text-sm">
                                     Let&apos;s bring your embedded vision to life.
                                 </p>
-                                <Link
-                                    href="#contact"
-                                    onClick={onClose}
-                                    className="block w-full text-center py-3 bg-primary text-bg font-bold rounded-xl hover:bg-cyan-400 transition-colors shadow-[0_0_20px_rgba(0,217,255,0.3)]"
+                                <HomeSectionLink
+                                    href="/#contact"
+                                    onNavigate={onClose}
+                                    className="block w-full text-center py-3 bg-primary text-black font-bold rounded-xl hover:bg-cyan-400 transition-colors shadow-[0_0_20px_rgba(0,217,255,0.3)]"
                                 >
                                     Get Started
-                                </Link>
+                                </HomeSectionLink>
                             </div>
                         </motion.div>
                     </motion.div>

@@ -10,9 +10,11 @@ interface ServiceCardProps {
     icon: LucideIcon;
     accentColor: string;
     delay: number;
+    features?: string[];
+    link?: string;
 }
 
-export default function ServiceCard({ title, description, icon: Icon, accentColor, delay }: ServiceCardProps) {
+export default function ServiceCard({ title, description, icon: Icon, accentColor, delay, features, link }: ServiceCardProps) {
     const ref = useRef<HTMLDivElement>(null);
     const [randomDelay, setRandomDelay] = useState(0);
 
@@ -55,23 +57,23 @@ export default function ServiceCard({ title, description, icon: Icon, accentColo
         y.set(0);
     };
 
-    // gradients for border/glow based on accent color
+    // lighter gradients for border/glow based on accent color
     const gradients: Record<string, string> = {
-        cyan: "from-cyan-500 to-blue-500",
-        purple: "from-purple-500 to-pink-500",
-        green: "from-green-500 to-emerald-500",
-        blue: "from-blue-500 to-indigo-500",
-        orange: "from-orange-500 to-red-500",
-        emerald: "from-emerald-500 to-teal-500",
+        cyan: "from-cyan-200 to-blue-300",
+        purple: "from-purple-200 to-pink-300",
+        green: "from-green-200 to-emerald-300",
+        blue: "from-blue-200 to-indigo-300",
+        orange: "from-orange-200 to-red-300",
+        emerald: "from-emerald-200 to-teal-300",
     };
 
     const textColors: Record<string, string> = {
-        cyan: "text-cyan-400 group-hover:text-cyan-300",
-        purple: "text-purple-400 group-hover:text-purple-300",
-        green: "text-green-400 group-hover:text-green-300",
-        blue: "text-blue-400 group-hover:text-blue-300",
-        orange: "text-orange-400 group-hover:text-orange-300",
-        emerald: "text-emerald-400 group-hover:text-emerald-300",
+        cyan: "text-slate-800 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-200",
+        purple: "text-slate-800 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-200",
+        green: "text-slate-800 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-200",
+        blue: "text-slate-800 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-200",
+        orange: "text-slate-800 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-200",
+        emerald: "text-slate-800 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-slate-200",
     };
 
     const borderGradient = gradients[accentColor] || "from-white/20 to-white/5";
@@ -97,38 +99,58 @@ export default function ServiceCard({ title, description, icon: Icon, accentColo
                 className="h-full relative rounded-3xl transition-transform duration-300 group-hover:-translate-y-2"
                 style={{ transformStyle: "preserve-3d" }}
             >
-                {/* 1. Animated Gradient Border (Background Layer) */}
+                    {/* 1. Animated Gradient Border (Background Layer) */}
                 <div
-                    className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${borderGradient} opacity-0 group-hover:opacity-100 blur-[2px] transition-all duration-500`}
+                    className={`absolute inset-[-1.5px] rounded-3xl bg-gradient-to-br ${borderGradient} opacity-[0.15] dark:opacity-0 group-hover:opacity-[0.4] dark:group-hover:opacity-[0.6] transition-all duration-500`}
                     style={{ transform: "translateZ(-1px)" }} // Push slightly back
                 />
 
                 {/* 2. Glass Card Content */}
-                <div className="relative h-full p-8 rounded-3xl bg-[#0A0E1A]/90 backdrop-blur-xl border border-white/10 group-hover:border-transparent transition-colors duration-300 overflow-hidden">
+                <div className="relative h-full p-8 rounded-3xl bg-white/60 dark:shadow-none dark:bg-bg/90 backdrop-blur-md border border-white/50 dark:border-white/10 group-hover:bg-white/80 dark:group-hover:bg-bg/90 transition-all duration-300 overflow-hidden shadow-sm">
 
                     {/* Inner Content Component */}
                     <div className="relative z-10 flex flex-col h-full" style={{ transform: "translateZ(20px)" }}>
 
                         {/* Icon Container */}
                         <motion.div
-                            className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 bg-white/5 border border-white/10 group-hover:scale-110 transition-transform duration-300 ${textColors[accentColor]}`}
+                            className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 bg-slate-100/80 dark:bg-white/8 border border-slate-300/60 dark:border-white/15 group-hover:scale-110 transition-transform duration-300 ${textColors[accentColor]}`}
                             animate={{ y: [0, -5, 0] }}
                             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: randomDelay }}
                         >
                             <Icon className="w-8 h-8" />
                         </motion.div>
 
-                        <h3 className="text-2xl font-heading font-bold text-white mb-3">{title}</h3>
+                        <h3 className="text-2xl font-heading font-bold text-slate-800 dark:text-white mb-3">{title}</h3>
 
-                        <p className="text-muted text-sm leading-relaxed mb-6 flex-grow">
+                        <p className="text-slate-600 dark:text-muted text-sm leading-relaxed mb-6 flex-grow">
                             {description}
                         </p>
 
+                        {features && features.length > 0 && (
+                            <ul className="mt-4 space-y-2 mb-6">
+                                {features.map((feature, i) => (
+                                    <li key={i} className="flex items-center text-xs text-slate-500 dark:text-muted/80">
+                                        <div className={`w-1.5 h-1.5 rounded-full mr-2 bg-gradient-to-r ${borderGradient}`} />
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
 
+                        {link && (
+                            <div className="mt-auto pt-4 border-t border-white/10">
+                                <a href={link} className={`inline-flex items-center text-sm font-medium ${textColors[accentColor]} hover:underline transition-all duration-300`}>
+                                    Learn more
+                                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </a>
+                            </div>
+                        )}
                     </div>
 
                     {/* Subtle Glow Overlay inside card */}
-                    <div className={`absolute -right-20 -bottom-20 w-64 h-64 bg-gradient-to-br ${borderGradient} opacity-0 group-hover:opacity-10 blur-[60px] transition-opacity duration-500 pointer-events-none`} />
+                    <div className={`absolute -right-20 -bottom-20 w-64 h-64 bg-gradient-to-br ${borderGradient} opacity-0 group-hover:opacity-[0.06] blur-[60px] transition-opacity duration-500 pointer-events-none`} />
 
                     {/* Glass Surface Shine Effect */}
                     <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">

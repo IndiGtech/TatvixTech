@@ -2,10 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { useTheme } from "next-themes";
 
 export default function AnimatedBackground() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const { scrollY } = useScroll();
+    const { theme, systemTheme } = useTheme();
     const y1 = useTransform(scrollY, [0, 1000], [0, 200]);
     const y2 = useTransform(scrollY, [0, 1000], [0, -150]);
 
@@ -15,6 +17,13 @@ export default function AnimatedBackground() {
 
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
+
+        // Determine if dark mode is active
+        const isDark = theme === "dark" || (theme === "system" && systemTheme === "dark") || (!theme && document.documentElement.classList.contains("dark"));
+        
+        // Colors for particles
+        const particleColor = isDark ? "0, 217, 255" : "14, 165, 233";
+        const lineColor = isDark ? "rgba(0, 217, 255, 0.05)" : "rgba(14, 165, 233, 0.4)";
 
         let width = window.innerWidth;
         let height = window.innerHeight;
@@ -39,7 +48,7 @@ export default function AnimatedBackground() {
             alpha: number;
         }> = [];
 
-        const particleCount = Math.floor((width * height) / 15000);
+        const particleCount = Math.floor((width * height) / 9000);
 
         for (let i = 0; i < particleCount; i++) {
             particles.push({
@@ -67,7 +76,7 @@ export default function AnimatedBackground() {
             ctx.clearRect(0, 0, width, height);
 
             // Draw connecting lines
-            ctx.strokeStyle = "rgba(0, 217, 255, 0.05)";
+            ctx.strokeStyle = lineColor;
             ctx.lineWidth = 1;
 
             for (let i = 0; i < particles.length; i++) {
@@ -98,7 +107,7 @@ export default function AnimatedBackground() {
                 // Draw particle
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(0, 217, 255, ${p.alpha})`; // Cyan
+                ctx.fillStyle = `rgba(${particleColor}, ${p.alpha})`; // Dynamic
                 ctx.fill();
 
                 // Connect nearby particles
@@ -125,18 +134,21 @@ export default function AnimatedBackground() {
             window.removeEventListener("mousemove", handleMouseMove);
             cancelAnimationFrame(animationFrameId);
         };
-    }, []);
+    }, [theme, systemTheme]);
 
     return (
         <div className="fixed inset-0 z-[-1] overflow-hidden bg-bg pointer-events-none">
+            {/* Background Grid Pattern (Visible mainly in light mode for texture) */}
+            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.12] dark:opacity-[0.02] pointer-events-none mix-blend-overlay" />
+
             {/* Background Gradient Orbs */}
             <motion.div
                 style={{ y: y1 }}
-                className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-primary/5 rounded-full blur-[120px]"
+                className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-primary/40 dark:bg-primary/5 rounded-full blur-[120px]"
             />
             <motion.div
                 style={{ y: y2 }}
-                className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-purple/5 rounded-full blur-[120px]"
+                className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-purple-600/40 dark:bg-purple/5 rounded-full blur-[120px]"
             />
 
             {/* Canvas for Particles */}

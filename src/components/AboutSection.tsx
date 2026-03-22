@@ -2,10 +2,12 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import HomeSectionLink from "./HomeSectionLink";
 
 export default function AboutSection() {
     return (
-        <section id="about" className="py-24 relative overflow-hidden bg-slate-900/50">
+        <section id="about" className="py-24 relative overflow-hidden bg-bg/50">
             {/* Ambient Background Elements */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-600/10 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2" />
@@ -32,9 +34,9 @@ export default function AboutSection() {
                                 transition={{ duration: 0.6 }}
                                 className="text-3xl md:text-5xl font-heading font-bold mb-6 leading-tight"
                             >
-                                <span className="text-white">Bridging the Gap Between </span>
+                                <span className="text-white">Complete Product </span>
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                                    Digital & Physical
+                                    Ecosystems
                                 </span>
                             </motion.h2>
 
@@ -46,15 +48,20 @@ export default function AboutSection() {
                                 className="space-y-6 text-lg text-muted/80 leading-relaxed"
                             >
                                 <p>
-                                    At Tatvix, we don&apos;t just write code — we breathe life into silicon.
+                                    At Tatvix, we don&apos;t just write embedded code — we create complete digital ecosystems from silicon to screen.
                                     Our team exists at the intersection of hardware and software, specializing in
-                                    crafting robust embedded systems that power the next generation of IoT devices.
+                                    crafting robust systems that power the next generation of connected devices.
                                 </p>
                                 <p>
                                     From ultra-low-power wearables to complex industrial controllers, we understand
                                     the unique constraints of embedded environments. We leverage deep technical
                                     expertise to deliver solutions that are not only functional but optimized for
                                     manufacturing and scale.
+                                </p>
+                                <p>
+                                    Our software development capabilities are a natural extension of our embedded expertise. 
+                                    We build custom web dashboards, mobile applications, and cloud integrations that seamlessly 
+                                    connect with your hardware, delivering a unified and powerful user experience.
                                 </p>
                             </motion.div>
                         </div>
@@ -69,11 +76,26 @@ export default function AboutSection() {
                             {["Firmware Engineering", "PCB Design", "Cloud Integration"].map((tag, i) => (
                                 <span
                                     key={i}
-                                    className="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-sm font-medium text-cyan-100/80"
+                                    className="px-4 py-2 rounded-full border-2 border-slate-300 dark:border-white/10 bg-white/50 dark:bg-white/5 text-sm font-semibold dark:font-medium text-slate-800 dark:text-cyan-100/80 shadow-sm dark:shadow-none"
                                 >
                                     {tag}
                                 </span>
                             ))}
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.5 }}
+                        >
+                            <HomeSectionLink
+                                href="/#insights"
+                                className="group inline-flex items-center gap-2 text-base font-bold text-slate-800 dark:text-primary transition-colors hover:text-cyan-600 dark:hover:text-cyan-300"
+                            >
+                                Read our technical insights
+                                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </HomeSectionLink>
                         </motion.div>
                     </div>
 
@@ -92,7 +114,8 @@ export default function AboutSection() {
                                 alt="Advanced Embedded System Board"
                                 width={600}
                                 height={600}
-                                unoptimized
+                                loading="lazy"
+                                sizes="(max-width: 768px) 100vw, 50vw"
                                 className="w-full h-auto object-cover transform transition-transform duration-700 hover:scale-105"
                             />
                         </div>

@@ -9,6 +9,36 @@
 */
 
 @layer base {
+  :root {
+    --bg: #F1F5F9;
+    --text: #000000;
+    --surface: rgba(0, 0, 0, 0.04);
+    --glass: rgba(0, 0, 0, 0.06);
+    --border: rgba(0, 0, 0, 0.12);
+    --primary: #0080A0;
+    --accent: #059669;
+    --purple: #6D28D9;
+    --orange: #D97706;
+    --muted: #1E293B;
+    --white-rgb: 0, 0, 0;
+    --black-rgb: 255, 255, 255;
+  }
+
+  .dark {
+    --bg: #0A0E1A;
+    --text: #E8F4FF;
+    --surface: rgba(255, 255, 255, 0.04);
+    --glass: rgba(255, 255, 255, 0.06);
+    --border: rgba(255, 255, 255, 0.12);
+    --primary: #00D9FF;
+    --accent: #10B981;
+    --purple: #8B5CF6;
+    --orange: #F59E0B;
+    --muted: #8B9DB3;
+    --white-rgb: 255, 255, 255;
+    --black-rgb: 0, 0, 0;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -19,6 +49,29 @@
 }
 
 @layer utilities {
+  /* LIGHT MODE CONTRAST OVERRIDES */
+  html:not(.dark) .text-white\/20,
+  html:not(.dark) .text-white\/30,
+  html:not(.dark) .text-white\/40 {
+    color: rgba(15, 23, 42, 0.6) !important;
+  }
+  
+  html:not(.dark) .text-white\/50,
+  html:not(.dark) .text-white\/60,
+  html:not(.dark) .text-white\/70 {
+    color: rgba(15, 23, 42, 0.75) !important;
+  }
+  
+  html:not(.dark) .text-white\/80,
+  html:not(.dark) .text-white\/90 {
+    color: rgba(15, 23, 42, 0.9) !important;
+  }
+
+  html:not(.dark) .border-white\/10,
+  html:not(.dark) .border-white\/20 {
+    border-color: rgba(15, 23, 42, 0.1) !important;
+  }
+
   .noise-overlay {
     position: fixed;
     top: 0;

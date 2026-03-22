@@ -20,15 +20,15 @@ export default function Hero() {
                         transition={{ duration: 0.6 }}
                     >
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight">
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-gray-400">
-                                Transform Your Ideas Into
+                            <span className="text-slate-800 dark:text-white">
+                                Professional Embedded Systems &
                             </span>
                             <br />
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-purple to-accent">
-                                Market-Ready
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+                                IoT Development
                             </span>
                             <br />
-                            <span className="text-white">IoT Products</span>
+                            <span className="text-slate-900 dark:text-white">Company</span>
                         </h1>
                     </motion.div>
 
@@ -36,9 +36,9 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="text-lg md:text-xl text-muted max-w-lg leading-relaxed"
+                        className="text-lg md:text-xl text-slate-800 dark:text-slate-200 max-w-lg leading-relaxed"
                     >
-                        End-to-end embedded systems development — from PCB design to cloud integration. We turn concepts into production-ready solutions.
+                        Leading embedded systems and IoT development company specializing in hardware design, firmware development, PCB design, and complete product solutions from concept to mass production.
                     </motion.p>
 
                     <motion.div
@@ -61,14 +61,14 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.6 }}
-                        className="pt-8 border-t border-white/5 flex flex-wrap gap-6 text-sm font-medium text-muted"
+                        className="pt-8 border-t border-slate-300 dark:border-white/5 flex flex-wrap gap-6 text-sm"
                     >
                         {[
-                            "50+ Products Launched",
-                            "ESP32 | STM32 | nRF52",
-                            "Concept to Production",
+                            "Embedded Hardware Design",
+                            "Firmware Development",
+                            "IoT Solutions & Connectivity",
                         ].map((text, i) => (
-                            <div key={i} className="flex items-center gap-2">
+                            <div key={i} className="flex items-center gap-2 text-slate-800 dark:text-slate-200 font-semibold dark:font-medium">
                                 <CheckCircle2 className="w-4 h-4 text-accent" />
                                 <span>{text}</span>
                             </div>

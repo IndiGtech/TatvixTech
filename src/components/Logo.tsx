@@ -9,6 +9,8 @@ export default function Logo() {
                     src="/Logo2.png"
                     alt="Tatvix Logo"
                     fill
+                    priority
+                    sizes="(max-width: 768px) 128px, 192px"
                     className="object-contain transition-transform duration-300 group-hover:scale-110"
                 />
             </div>

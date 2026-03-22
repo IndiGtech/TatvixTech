@@ -78,6 +78,18 @@ export default function HowWeBuild() {
                         ))}
                     </div>
                 </div>
+
+                <div className="flex justify-center mt-8 relative z-10">
+                    <a
+                        href="/process"
+                        className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium hover:bg-primary hover:text-bg hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(0,217,255,0.4)] transition-all duration-300"
+                    >
+                        Explore our engineering process
+                        <svg className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
             </div>
         </section>
     );

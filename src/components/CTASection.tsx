@@ -10,8 +10,7 @@ export default function CTASection() {
 
     return (
         <section id="contact" className="relative w-full py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
-            {/* Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-black to-emerald-900/20 opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-bg to-emerald-900/10 opacity-80 dark:from-blue-900/20 dark:via-bg dark:to-emerald-900/20 dark:opacity-50" />
 
             {/* Glow Effect */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
@@ -22,7 +21,7 @@ export default function CTASection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-white/80"
+                    className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-text via-blue-500 to-text/80 dark:from-white dark:via-blue-100 dark:to-white/80"
                 >
                     Ready to Build the Future?
                 </motion.h2>
@@ -32,7 +31,7 @@ export default function CTASection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-lg md:text-xl text-white/60 mb-10 max-w-2xl mx-auto"
+                    className="text-lg md:text-xl text-muted dark:text-white/60 mb-10 max-w-2xl mx-auto"
                 >
                     From concept to production-ready hardware, we turn your innovative ideas into reality with precision engineering and cutting-edge IoT solutions.
                 </motion.p>
