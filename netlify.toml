@@ -3,6 +3,7 @@
   publish = ".next"
 
 [build.environment]
+  NODE_VERSION = "20"
   # Suppress false positive secret detection for Next.js public env vars
   NETLIFY_SKIP_SECRET_DETECTION = "true"
 
