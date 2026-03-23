@@ -20,7 +20,7 @@ const TESTIMONIALS: Testimonial[] = [
         id: "1",
         quote:
             "Tatvix delivered our medical device firmware 2 weeks ahead of schedule",
-        author: "Dr. Sarah Chen",
+        author: "Mr. Subnesh B",
         role: "CTO",
         company: "MedTech Corp",
     },
@@ -28,7 +28,7 @@ const TESTIMONIALS: Testimonial[] = [
         id: "2",
         quote:
             "Their ESP32 expertise helped us scale from prototype to 10K units",
-        author: "Mike Rodriguez",
+        author: "Mr. Harshil R",
         role: "Hardware Lead",
         company: "AutoSense",
     },
@@ -36,7 +36,7 @@ const TESTIMONIALS: Testimonial[] = [
         id: "3",
         quote:
             "Professional team that understands both hardware constraints and software architecture",
-        author: "Lisa Park",
+        author: "Mr. Kalpesh B",
         role: "Founder",
         company: "SmartHome Inc",
     },

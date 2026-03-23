@@ -11,16 +11,13 @@ export default function SEOMonitoring() {
     // Track page views for analytics
     trackPageView(window.location.href, document.title);
     
-    // Monitor Core Web Vitals
-    if ('web-vital' in window) {
-      import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
-        getCLS(console.log);
-        getFID(console.log);
-        getFCP(console.log);
-        getLCP(console.log);
-        getTTFB(console.log);
-      });
-    }
+    import('web-vitals').then(({ onCLS, onINP, onFCP, onLCP, onTTFB }) => {
+      onCLS(console.log);
+      onINP(console.log);
+      onFCP(console.log);
+      onLCP(console.log);
+      onTTFB(console.log);
+    });
 
     // Schema.org validation in development
     if (process.env.NODE_ENV === 'development') {

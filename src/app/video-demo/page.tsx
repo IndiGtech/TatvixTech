@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, Monitor, Grid3X3, Timeline, ArrowRight, Check } from "lucide-react";
+import { Play, Monitor, Grid3X3, History, ArrowRight, Check } from "lucide-react";
 import VideoHeroOption1 from "@/components/VideoHeroOption1";
 import VideoShowcaseOption2 from "@/components/VideoShowcaseOption2";
 import VideoTimelineOption3 from "@/components/VideoTimelineOption3";
@@ -68,7 +68,7 @@ const videoOptions: VideoOption[] = [
             "Interactive milestones",
             "Professional presentation"
         ],
-        icon: Timeline,
+        icon: History,
         component: VideoTimelineOption3,
         preview: "Best for explaining complex processes and building trust through transparency",
         bestFor: ["Process explanation", "Project timelines", "Educational content", "Trust building"]
