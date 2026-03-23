@@ -2,10 +2,6 @@
   command = "npm run build"
   publish = ".next"
 
-[build.environment]
-  # Disable secrets scanning - false positives with Next.js public env vars
-  NETLIFY_SKIP_SECRET_DETECTION = "true"
-
 [[headers]]
   for = "/*"
   [headers.values]

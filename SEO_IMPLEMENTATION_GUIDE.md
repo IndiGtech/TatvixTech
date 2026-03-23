@@ -37,9 +37,9 @@ Create these images in your `/public` folder:
 
 ### 3. Set Up Google Search Console
 1. Go to [Google Search Console](https://search.google.com/search-console)
-2. Add your property: `https://tatvixtech.com`
+2. Add your property: `https://yourdomain.com`
 3. Verify ownership using the meta tag method
-4. Submit your sitemap: `https://tatvixtech.com/sitemap.xml`
+4. Submit your sitemap: `https://yourdomain.com/sitemap.xml`
 
 ### 4. Set Up Google Analytics
 1. Go to [Google Analytics](https://analytics.google.com)
