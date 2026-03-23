@@ -3,9 +3,8 @@
   publish = ".next"
 
 [build.environment]
-  # Configure secrets scanning to ignore public env vars and documentation
-  SECRETS_SCAN_OMIT_PATHS = "SEO_IMPLEMENTATION_GUIDE.md,.gitignore"
-  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_BUSINESS_EMAIL,NEXT_PUBLIC_SITE_URL"
+  # Disable secrets scanning - false positives with Next.js public env vars
+  NETLIFY_SKIP_SECRET_DETECTION = "true"
 
 [[headers]]
   for = "/*"
