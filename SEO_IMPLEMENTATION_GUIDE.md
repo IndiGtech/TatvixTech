@@ -15,7 +15,7 @@ NEXT_PUBLIC_BING_SITE_VERIFICATION=your-bing-verification-code
 
 # Update with your actual business information
 NEXT_PUBLIC_BUSINESS_PHONE=+1-XXX-XXX-XXXX
-NEXT_PUBLIC_BUSINESS_EMAIL=info@tatvixtech.com
+NEXT_PUBLIC_BUSINESS_EMAIL=your-email@domain.com
 NEXT_PUBLIC_BUSINESS_ADDRESS=Your Actual Business Address
 NEXT_PUBLIC_BUSINESS_CITY=Your City
 NEXT_PUBLIC_BUSINESS_STATE=Your State
