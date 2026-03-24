@@ -110,9 +110,6 @@ const nextConfig: NextConfig = {
     buildActivityPosition: "bottom-right",
   },
 
-  // Ensure server-only environment variables don't leak to client
-  env: {},
-
   // Experimental features for performance
   experimental: {
     optimizeCss: true,
