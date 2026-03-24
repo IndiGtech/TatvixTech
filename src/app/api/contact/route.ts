@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { validateEmailConfig } from '@/lib/email-config.server';
 
 // Ensure this runs only on server
 export const runtime = 'nodejs';
@@ -10,35 +11,31 @@ export async function POST(request: Request) {
         const body = await request.json();
         const { name, email, mobile, company, title, inquiryType, description } = body;
 
-        // Get server-only environment variables
-        const smtpHost = process.env.SMTP_HOST;
-        const smtpUser = process.env.SMTP_USER;
-        const smtpPassword = process.env.SMTP_PASSWORD;
-        const smtpPort = process.env.SMTP_PORT;
-        const contactEmail = process.env.CONTACT_EMAIL;
-
-        // Check if environment variables are set
-        if (!smtpHost || !smtpUser || !smtpPassword) {
-            console.error("Missing SMTP environment variables");
+        // Get server-only configuration
+        let emailConfig;
+        try {
+            emailConfig = validateEmailConfig();
+        } catch (error) {
+            console.error("Email configuration error:", error);
             return NextResponse.json({ success: false, message: "Server configuration error" }, { status: 500 });
         }
 
         // Create a transporter
         const transporter = nodemailer.createTransport({
-            host: smtpHost,
-            port: Number(smtpPort) || 587,
-            secure: Number(smtpPort) === 465, // true for 465, false for other ports
+            host: emailConfig.host,
+            port: Number(emailConfig.port) || 587,
+            secure: Number(emailConfig.port) === 465, // true for 465, false for other ports
             auth: {
-                user: smtpUser,
-                pass: smtpPassword,
+                user: emailConfig.user,
+                pass: emailConfig.password,
             },
         });
 
         // Email content
         const mailOptions = {
-            from: `"${name}" <${smtpUser}>`, // Sender address (must be authenticated user usually)
+            from: `"${name}" <${emailConfig.user}>`, // Sender address (must be authenticated user usually)
             replyTo: email,
-            to: contactEmail || smtpUser, // Receiver address
+            to: emailConfig.contactEmail || emailConfig.user, // Receiver address
             subject: `New Inquiry: ${inquiryType} from ${name}`,
             text: `
 Name: ${name}

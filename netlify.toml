@@ -3,6 +3,7 @@
   publish = ".next"
 
 [build.environment]
+  # Disable secrets scanning entirely
   NETLIFY_SKIP_SECRET_DETECTION = "true"
 
 [[plugins]]
