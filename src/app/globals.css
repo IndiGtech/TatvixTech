@@ -46,6 +46,15 @@
   body {
     @apply bg-bg text-text antialiased;
   }
+
+  /* Prevent horizontal overflow on mobile */
+  * {
+    max-width: 100%;
+  }
+  
+  html, body {
+    overflow-x: hidden;
+  }
 }
 
 @layer utilities {

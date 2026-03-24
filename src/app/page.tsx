@@ -26,7 +26,7 @@ export default function Home() {
   ];
 
   return (
-    <main className="relative min-h-screen w-full flex flex-col items-center overflow-x-hidden">
+    <main className="relative min-h-screen w-full max-w-full flex flex-col items-center overflow-x-hidden">
       <StructuredData data={getFAQSchema(faqData)} />
       <StructuredData data={getLocalBusinessSchema()} />
       <StructuredData data={getWebsiteSchema()} />

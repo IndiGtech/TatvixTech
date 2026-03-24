@@ -9,8 +9,8 @@ export default function ProductEcosystem() {
     return (
         <section id="ecosystem" className="py-32 relative bg-bg/50">
             {/* Ambient Background Elements */}
-            <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] -translate-x-1/2 pointer-events-none" />
-            <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] translate-x-1/2 pointer-events-none" />
+            <div className="absolute top-1/4 left-0 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-primary/10 rounded-full blur-[150px] -translate-x-1/2 pointer-events-none" />
+            <div className="absolute bottom-1/4 right-0 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-purple-600/10 rounded-full blur-[120px] translate-x-1/2 pointer-events-none" />
 
             <div className="w-full relative z-10">
                 {/* Section Header */}

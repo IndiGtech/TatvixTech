@@ -200,7 +200,7 @@ export default function EcosystemDiagram() {
                                     
                                     {/* Dynamic Rotating Glow */}
                                     <motion.div 
-                                        className={`absolute top-0 right-0 w-[500px] h-[500px] bg-current opacity-15 blur-[120px] rounded-full pointer-events-none ${step.color}`}
+                                        className={`absolute top-0 right-0 w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-current opacity-15 blur-[120px] rounded-full pointer-events-none ${step.color}`}
                                         animate={{ 
                                             scale: [1, 1.2, 1],
                                             x: ["30%", "20%", "30%"],

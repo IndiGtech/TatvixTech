@@ -15,14 +15,14 @@ export default function HeroIllustration() {
     if (!mounted) return null;
 
     return (
-        <div className="relative w-full h-full min-h-[600px] flex items-center justify-center pointer-events-none select-none overflow-visible">
+        <div className="relative w-full h-full min-h-[400px] md:min-h-[600px] flex items-center justify-center pointer-events-none select-none overflow-hidden">
 
             {/* Ambient Background Aura */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] animate-pulse-slow" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-blue-600/10 rounded-full blur-[80px] mix-blend-screen" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-primary/5 rounded-full blur-[100px] animate-pulse-slow" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-blue-600/10 rounded-full blur-[80px] mix-blend-screen" />
 
             {/* Main Stage */}
-            <div className="relative w-[500px] h-[500px] perspective-[2000px]">
+            <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px] perspective-[2000px]">
 
                 {/* --- Background PCB Traces --- */}
                 <svg className="absolute inset-0 w-full h-full opacity-60 dark:opacity-30" viewBox="0 0 500 500">
@@ -91,7 +91,7 @@ export default function HeroIllustration() {
                 <div className="absolute inset-[40px] rounded-full border border-black/5 dark:border-white/5" /> {/* Static base track */}
 
                 {/* --- 1. The Gyroscopic Core --- */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] flex items-center justify-center transform-style-3d z-20">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] md:w-[200px] md:h-[200px] flex items-center justify-center transform-style-3d z-20">
 
                     {/* Core Sphere Glow */}
                     <motion.div
