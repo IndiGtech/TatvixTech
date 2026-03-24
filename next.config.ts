@@ -1,8 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Ensure server-only environment variables don't leak to client
+  env: {},
+
   /* SEO and Performance Optimizations */
-  
+
   // Image optimization for better Core Web Vitals
   images: {
     remotePatterns: [
