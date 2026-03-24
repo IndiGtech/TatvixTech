@@ -102,35 +102,13 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Development indicators
-  devIndicators: {
-    // @ts-expect-error - appIsrStatus is a valid Next.js 15+ option but may be missing from types
-    appIsrStatus: false,
-    buildActivity: false,
-    buildActivityPosition: "bottom-right",
-  },
+  // Development indicators (simplified for Next.js 16)
+  devIndicators: false,
 
   // Experimental features for performance
   experimental: {
     optimizeCss: true,
-    scrollRestoration: true,
   },
-
-  // Bundle analyzer for production builds
-  ...(process.env.ANALYZE === 'true' && {
-    webpack: (config: any) => {
-      if (process.env.NODE_ENV === 'production') {
-        const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-        config.plugins.push(
-          new BundleAnalyzerPlugin({
-            analyzerMode: 'static',
-            openAnalyzer: false,
-          })
-        );
-      }
-      return config;
-    },
-  }),
 };
 
 export default nextConfig;
