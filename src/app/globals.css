@@ -55,6 +55,18 @@
   html, body {
     overflow-x: hidden;
   }
+
+  /* Fix for animation icon visibility */
+  .satellite-icon {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform;
+  }
+
+  /* Ensure icons stay visible during animations */
+  [data-framer-motion] {
+    transform-style: preserve-3d;
+  }
 }
 
 @layer utilities {

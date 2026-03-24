@@ -15,7 +15,7 @@ export default function HeroIllustration() {
     if (!mounted) return null;
 
     return (
-        <div className="relative w-full h-full min-h-[400px] md:min-h-[600px] flex items-center justify-center pointer-events-none select-none overflow-hidden">
+        <div className="relative w-full h-full min-h-[400px] md:min-h-[600px] flex items-center justify-center pointer-events-none select-none overflow-hidden" style={{ isolation: 'isolate' }}>
 
             {/* Ambient Background Aura */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-primary/5 rounded-full blur-[100px] animate-pulse-slow" />
@@ -86,12 +86,12 @@ export default function HeroIllustration() {
                 <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-[40px] rounded-full border border-dashed border-cyan-600/40 dark:border-cyan-500/20"
+                    className="absolute inset-[40px] rounded-full border border-dashed border-cyan-600/40 dark:border-cyan-500/20 z-[10]"
                 />
-                <div className="absolute inset-[40px] rounded-full border border-black/5 dark:border-white/5" /> {/* Static base track */}
+                <div className="absolute inset-[40px] rounded-full border border-black/5 dark:border-white/5 z-[8]" /> {/* Static base track */}
 
                 {/* --- 1. The Gyroscopic Core --- */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] md:w-[200px] md:h-[200px] flex items-center justify-center transform-style-3d z-20">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] md:w-[200px] md:h-[200px] flex items-center justify-center transform-style-3d z-[15]">
 
                     {/* Core Sphere Glow */}
                     <motion.div
@@ -124,8 +124,8 @@ export default function HeroIllustration() {
                     />
 
                     {/* Central Energy Singularity */}
-                    <div className="absolute w-[40px] h-[40px] bg-cyan-100 dark:bg-white rounded-full shadow-[0_0_40px_rgba(0,255,255,0.8)] z-10 animate-pulse" />
-                    <div className="absolute w-[20px] h-[20px] bg-cyan-300 rounded-full blur-[2px] z-20" />
+                    <div className="absolute w-[40px] h-[40px] bg-cyan-100 dark:bg-white rounded-full shadow-[0_0_40px_rgba(0,255,255,0.8)] z-[18] animate-pulse" />
+                    <div className="absolute w-[20px] h-[20px] bg-cyan-300 rounded-full blur-[2px] z-[19]" />
 
                 </div>
 
@@ -138,11 +138,11 @@ export default function HeroIllustration() {
                 <DataBeam angle={198} radius={210} delay={0.8} />
 
                 {/* --- 3. Floating Satellites (Icons) --- */}
-                <Satellite icon={<Code className="w-7 h-7" />} label="Firmware" angle={270} radius={210} delay={0} />
-                <Satellite icon={<Cloud className="w-7 h-7" />} label="Cloud" angle={342} radius={210} delay={1} />
-                <Satellite icon={<ShieldCheck className="w-7 h-7" />} label="Security" angle={54} radius={210} delay={2} />
-                <Satellite icon={<Cpu className="w-7 h-7" />} label="Hardware" angle={126} radius={210} delay={3} />
-                <Satellite icon={<Wifi className="w-7 h-7" />} label="Connectivity" angle={198} radius={210} delay={4} />
+                <Satellite icon={<Code className="w-6 h-6 md:w-7 md:h-7" />} label="Firmware" angle={270} radius={210} delay={0} />
+                <Satellite icon={<Cloud className="w-6 h-6 md:w-7 md:h-7" />} label="Cloud" angle={342} radius={210} delay={1} />
+                <Satellite icon={<ShieldCheck className="w-6 h-6 md:w-7 md:h-7" />} label="Security" angle={54} radius={210} delay={2} />
+                <Satellite icon={<Cpu className="w-6 h-6 md:w-7 md:h-7" />} label="Hardware" angle={126} radius={210} delay={3} />
+                <Satellite icon={<Wifi className="w-6 h-6 md:w-7 md:h-7" />} label="Connectivity" angle={198} radius={210} delay={4} />
 
             </div>
         </div>
@@ -153,7 +153,7 @@ export default function HeroIllustration() {
 function DataBeam({ angle, radius, delay }: { angle: number, radius: number, delay: number }) {
     return (
         <div
-            className="absolute top-1/2 left-1/2 h-[2px] origin-left z-0"
+            className="absolute top-1/2 left-1/2 h-[2px] origin-left z-[5]"
             style={{
                 width: `${radius}px`,
                 transform: `rotate(${angle}deg)`
@@ -176,20 +176,26 @@ function DataBeam({ angle, radius, delay }: { angle: number, radius: number, del
 function Satellite({ icon, angle, radius, delay }: { icon: React.ReactNode, label?: string, angle: number, radius: number, delay: number }) {
     return (
         <div
-            className="absolute top-1/2 left-1/2 w-0 h-0 flex items-center justify-center"
+            className="absolute top-1/2 left-1/2 w-0 h-0 flex items-center justify-center z-[30]"
             style={{ transform: `rotate(${angle}deg) translate(${radius}px) rotate(-${angle}deg)` }}
         >
             <motion.div
-                animate={{ y: [-10, 10, -10] }}
+                animate={{ y: [-8, 8, -8] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: delay }}
-                className="relative group cursor-default"
+                className="relative group cursor-default z-[30] satellite-icon"
+                style={{ 
+                    willChange: 'transform',
+                    backfaceVisibility: 'hidden',
+                    perspective: '1000px',
+                    transformStyle: 'preserve-3d'
+                }}
             >
                 {/* Node Glow */}
-                <div className="absolute inset-0 bg-cyan-500/20 rounded-2xl blur-lg transition-opacity duration-300 opacity-50 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-cyan-500/20 rounded-2xl blur-lg transition-opacity duration-300 opacity-50 group-hover:opacity-100 z-[25]" />
 
                 {/* Glass Container */}
-                <div className="relative p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-lg md:shadow-[0_0_20px_rgba(0,0,0,0.3)] flex flex-col items-center justify-center gap-2 transition-transform duration-300 group-hover:scale-110 group-hover:border-cyan-400/50 group-hover:bg-white/10">
-                    <div className="text-cyan-600 dark:text-cyan-100 group-hover:text-cyan-500 dark:group-hover:text-cyan-300 drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]">
+                <div className="relative p-3 md:p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 shadow-lg md:shadow-[0_0_20px_rgba(0,0,0,0.3)] flex flex-col items-center justify-center gap-2 transition-all duration-300 group-hover:scale-110 group-hover:border-cyan-400/50 group-hover:bg-white/20 z-[30]">
+                    <div className="text-cyan-600 dark:text-cyan-100 group-hover:text-cyan-500 dark:group-hover:text-cyan-300 drop-shadow-[0_0_8px_rgba(0,255,255,0.5)] z-[35] relative">
                         {icon}
                     </div>
                     {/* Optional Label (Hidden by default, reveal on larger screens or hover if needed? Kept hidden for clean 'Icon only' look or minimal label) */}
@@ -197,7 +203,7 @@ function Satellite({ icon, angle, radius, delay }: { icon: React.ReactNode, labe
                 </div>
 
                 {/* Connection Point Dot (Where the beam hits) */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-cyan-400 rounded-full blur-[1px]" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-cyan-400 rounded-full blur-[1px] z-[20]" />
             </motion.div>
         </div>
     );
