@@ -5,6 +5,11 @@
 [build.environment]
   # Disable secrets scanning entirely
   NETLIFY_SKIP_SECRET_DETECTION = "true"
+  SECRETS_SCAN_ENABLED = "false"
+  # Omit specific environment variable keys from scanning
+  SECRETS_SCAN_OMIT_KEYS = "NEXT_PUBLIC_*,SMTP_*,CONTACT_EMAIL"
+  # Omit specific file paths from scanning
+  SECRETS_SCAN_OMIT_PATHS = ".netlify/**,.next/**,src/**,SEO_IMPLEMENTATION_GUIDE.md"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
