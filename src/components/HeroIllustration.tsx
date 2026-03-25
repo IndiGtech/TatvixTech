@@ -15,14 +15,14 @@ export default function HeroIllustration() {
     if (!mounted) return null;
 
     return (
-        <div className="relative w-full h-full min-h-[400px] md:min-h-[600px] flex items-center justify-center pointer-events-none select-none overflow-visible" style={{ isolation: 'isolate' }}>
+        <div className="relative w-full h-full min-h-[600px] flex items-center justify-center pointer-events-none select-none overflow-visible">
 
             {/* Ambient Background Aura */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-primary/5 rounded-full blur-[100px] animate-pulse-slow" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-blue-600/10 rounded-full blur-[80px] mix-blend-screen" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] animate-pulse-slow" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-blue-600/10 rounded-full blur-[80px] mix-blend-screen" />
 
             {/* Main Stage */}
-            <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px] perspective-[2000px] overflow-visible">
+            <div className="relative w-[500px] h-[500px] perspective-[2000px]">
 
                 {/* --- Background PCB Traces --- */}
                 <svg className="absolute inset-0 w-full h-full opacity-60 dark:opacity-30" viewBox="0 0 500 500">
@@ -82,37 +82,16 @@ export default function HeroIllustration() {
                 </svg>
 
                 {/* --- 0. Orbit Ring (Connecting Icons) --- */}
-                {/* Orbit ring with consistent 40px inset across all screen sizes */}
-                {/* This creates: Mobile 200px diameter, SM 270px diameter, MD+ 420px diameter */}
-                <div className="absolute inset-[40px] rounded-full border border-black/5 dark:border-white/5 z-[8]" /> {/* Static base track */}
-                
-                {/* Rotating container for orbit ring and satellites */}
+                {/* Icons are at radius 210px. Container 500px. Inset = (500 - 420) / 2 = 40px */}
                 <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0 z-[10]"
-                >
-                    {/* Dashed orbit ring */}
-                    <div className="absolute inset-[40px] rounded-full border border-dashed border-cyan-600/40 dark:border-cyan-500/20" />
-                    
-                    {/* --- 2. Data Tethers (CSS Version for Reliability) --- */}
-                    {/* Connecting Core (Center) to Icons (Radius) - Responsive radius */}
-                    <DataBeam angle={270} delay={0} />
-                    <DataBeam angle={342} delay={0.2} />
-                    <DataBeam angle={54} delay={0.4} />
-                    <DataBeam angle={126} delay={0.6} />
-                    <DataBeam angle={198} delay={0.8} />
-
-                    {/* --- 3. Floating Satellites (Icons) --- */}
-                    <Satellite icon={<Code className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />} angle={270} delay={0} />
-                    <Satellite icon={<Cloud className="w-4 h-4 text-blue-600 dark:text-blue-400" />} angle={342} delay={1} />
-                    <Satellite icon={<ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />} angle={54} delay={2} />
-                    <Satellite icon={<Cpu className="w-4 h-4 text-purple-600 dark:text-purple-400" />} angle={126} delay={3} />
-                    <Satellite icon={<Wifi className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />} angle={198} delay={4} />
-                </motion.div>
+                    className="absolute inset-[40px] rounded-full border border-dashed border-cyan-600/40 dark:border-cyan-500/20"
+                />
+                <div className="absolute inset-[40px] rounded-full border border-black/5 dark:border-white/5" /> {/* Static base track */}
 
                 {/* --- 1. The Gyroscopic Core --- */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] md:w-[200px] md:h-[200px] flex items-center justify-center transform-style-3d z-[15]">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] flex items-center justify-center transform-style-3d z-20">
 
                     {/* Core Sphere Glow */}
                     <motion.div
@@ -145,11 +124,25 @@ export default function HeroIllustration() {
                     />
 
                     {/* Central Energy Singularity */}
-                    <div className="absolute w-[40px] h-[40px] bg-cyan-100 dark:bg-white rounded-full shadow-[0_0_40px_rgba(0,255,255,0.8)] z-[18] animate-pulse" />
-                    <div className="absolute w-[20px] h-[20px] bg-cyan-300 rounded-full blur-[2px] z-[19]" />
+                    <div className="absolute w-[40px] h-[40px] bg-cyan-100 dark:bg-white rounded-full shadow-[0_0_40px_rgba(0,255,255,0.8)] z-10 animate-pulse" />
+                    <div className="absolute w-[20px] h-[20px] bg-cyan-300 rounded-full blur-[2px] z-20" />
 
                 </div>
 
+                {/* --- 2. Data Tethers (CSS Version for Reliability) --- */}
+                {/* Connecting Core (Center) to Icons (Radius) */}
+                <DataBeam angle={270} radius={210} delay={0} />
+                <DataBeam angle={342} radius={210} delay={0.2} />
+                <DataBeam angle={54} radius={210} delay={0.4} />
+                <DataBeam angle={126} radius={210} delay={0.6} />
+                <DataBeam angle={198} radius={210} delay={0.8} />
+
+                {/* --- 3. Floating Satellites (Icons) --- */}
+                <Satellite icon={<Code className="w-7 h-7" />} label="Firmware" angle={270} radius={210} delay={0} />
+                <Satellite icon={<Cloud className="w-7 h-7" />} label="Cloud" angle={342} radius={210} delay={1} />
+                <Satellite icon={<ShieldCheck className="w-7 h-7" />} label="Security" angle={54} radius={210} delay={2} />
+                <Satellite icon={<Cpu className="w-7 h-7" />} label="Hardware" angle={126} radius={210} delay={3} />
+                <Satellite icon={<Wifi className="w-7 h-7" />} label="Connectivity" angle={198} radius={210} delay={4} />
 
             </div>
         </div>
@@ -157,30 +150,10 @@ export default function HeroIllustration() {
 }
 
 // Sub-component: Animated Data Beam (CSS Implementation)
-function DataBeam({ angle, delay }: { angle: number, delay: number }) {
-    const [radius, setRadius] = useState(100);
-    
-    useEffect(() => {
-        const updateRadius = () => {
-            const width = window.innerWidth;
-            // Match the same radius calculation as Satellite component
-            if (width >= 768) {
-                setRadius(210); // md: 500px - 80px = 420px diameter = 210px radius
-            } else if (width >= 640) {
-                setRadius(135); // sm: 350px - 80px = 270px diameter = 135px radius  
-            } else {
-                setRadius(100); // mobile: 280px - 80px = 200px diameter = 100px radius
-            }
-        };
-        
-        updateRadius();
-        window.addEventListener('resize', updateRadius);
-        return () => window.removeEventListener('resize', updateRadius);
-    }, []);
-    
+function DataBeam({ angle, radius, delay }: { angle: number, radius: number, delay: number }) {
     return (
         <div
-            className="absolute top-1/2 left-1/2 h-[2px] origin-left z-[5]"
+            className="absolute top-1/2 left-1/2 h-[2px] origin-left z-0"
             style={{
                 width: `${radius}px`,
                 transform: `rotate(${angle}deg)`
@@ -200,65 +173,31 @@ function DataBeam({ angle, delay }: { angle: number, delay: number }) {
 }
 
 // Sub-component: Floating Satellite Node
-function Satellite({ icon, angle, delay }: { icon: React.ReactNode, angle: number, delay: number }) {
-    const [radius, setRadius] = useState(100);
-    
-    useEffect(() => {
-        const updateRadius = () => {
-            const width = window.innerWidth;
-            // Calculate radius to match orbit ring (inset-[40px])
-            // Container - (2 * inset) = diameter, so radius = diameter / 2
-            if (width >= 768) {
-                setRadius(210); // md: 500px - 80px = 420px diameter = 210px radius
-            } else if (width >= 640) {
-                setRadius(135); // sm: 350px - 80px = 270px diameter = 135px radius  
-            } else {
-                setRadius(100); // mobile: 280px - 80px = 200px diameter = 100px radius
-            }
-        };
-        
-        updateRadius();
-        window.addEventListener('resize', updateRadius);
-        return () => window.removeEventListener('resize', updateRadius);
-    }, []);
-    
-    // Calculate position using trigonometry
-    const radian = (angle * Math.PI) / 180;
-    const x = Math.cos(radian) * radius;
-    const y = Math.sin(radian) * radius;
-    
-    // Debug: Log positioning for verification (remove in production)
-    // console.log(`Satellite ${angle}°: radius=${radius}px, x=${x.toFixed(1)}px, y=${y.toFixed(1)}px`);
-    
+function Satellite({ icon, angle, radius, delay }: { icon: React.ReactNode, label?: string, angle: number, radius: number, delay: number }) {
     return (
         <div
-            className="absolute z-[50]"
-            style={{ 
-                left: `calc(50% + ${x}px)`,
-                top: `calc(50% + ${y}px)`,
-                transform: 'translate(-50%, -50%)'
-            }}
+            className="absolute top-1/2 left-1/2 w-0 h-0 flex items-center justify-center"
+            style={{ transform: `rotate(${angle}deg) translate(${radius}px) rotate(-${angle}deg)` }}
         >
-            {/* Subtle floating animation container */}
             <motion.div
-                animate={{ 
-                    scale: [1, 1.05, 1],
-                    rotateZ: [-2, 2, -2]
-                }}
+                animate={{ y: [-10, 10, -10] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: delay }}
+                className="relative group cursor-default"
             >
-                {/* Glass Container with Enhanced Visibility */}
-                <div className="relative p-2 rounded-lg bg-white/60 dark:bg-white/40 backdrop-blur-md border border-white/70 dark:border-white/50 shadow-lg shadow-black/20 dark:shadow-black/40 flex items-center justify-center group hover:scale-110 transition-all duration-300 hover:bg-white/70 dark:hover:bg-white/50 hover:shadow-xl w-[36px] h-[36px]">
-                    {/* Inner glow effect */}
-                    <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-cyan-100/20 to-blue-100/20 dark:from-cyan-400/10 dark:to-blue-400/10" />
-                    
-                    <div className="relative flex items-center justify-center z-10">
+                {/* Node Glow */}
+                <div className="absolute inset-0 bg-cyan-500/20 rounded-2xl blur-lg transition-opacity duration-300 opacity-50 group-hover:opacity-100" />
+
+                {/* Glass Container */}
+                <div className="relative p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-lg md:shadow-[0_0_20px_rgba(0,0,0,0.3)] flex flex-col items-center justify-center gap-2 transition-transform duration-300 group-hover:scale-110 group-hover:border-cyan-400/50 group-hover:bg-white/10">
+                    <div className="text-cyan-600 dark:text-cyan-100 group-hover:text-cyan-500 dark:group-hover:text-cyan-300 drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]">
                         {icon}
                     </div>
+                    {/* Optional Label (Hidden by default, reveal on larger screens or hover if needed? Kept hidden for clean 'Icon only' look or minimal label) */}
+                    {/* <span className="text-[10px] uppercase tracking-widest text-cyan-200/60 font-medium">{label}</span> */}
                 </div>
 
-                {/* Connection Point Dot */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-cyan-400 rounded-full blur-[0.5px] z-[45]" />
+                {/* Connection Point Dot (Where the beam hits) */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1 h-1 bg-cyan-400 rounded-full blur-[1px]" />
             </motion.div>
         </div>
     );
