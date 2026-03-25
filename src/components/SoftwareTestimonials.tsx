@@ -5,16 +5,16 @@ import { Quote } from "lucide-react";
 
 const testimonials = [
     {
-        quote: "We originally hired Tatvix just for PCB design. When we realized they could also build our AWS backend and React Native app, it changed everything. Having one team handle the entire stack saved us months of vendor coordination.",
-        author: "Mr. Subnesh B",
-        role: "CTO, MedTech Solutions",
-        highlight: "Saved months of vendor coordination"
+        quote: "Working with Tatvix improved our system stability. We're now in production with 5,000+ units.",
+        author: "Mr. Bharat Mehta",
+        role: "Senior Engineering Manager",
+        highlight: "5,000+ units in production"
     },
     {
-        quote: "Their unique ability to write low-level firmware and high-level web dashboards is incredibly rare. The dashboard they built visualizes our sensor data flawlessly without ever dropping a packet.",
-        author: "Mr. Rajesh P",
-        role: "Director of Engineering, IndustrialIoT",
-        highlight: "Visualizes sensor data flawlessly"
+        quote: "The device is accurate, reliable, and performs well while maintaining good battery life.",
+        author: "Mr. Nilesh Joshi",
+        role: "Technical Lead",
+        highlight: "Accurate & reliable performance"
     }
 ];
 
