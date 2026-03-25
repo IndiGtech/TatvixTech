@@ -79,284 +79,333 @@ export function computeReadingMinutes(sections: BlogSection[]): number {
 
 const RAW_POSTS: Omit<BlogPost, "readingTimeMinutes">[] = [
     {
-        slug: "designing-reliable-embedded-systems",
-        title: "Designing Reliable Embedded Systems: From Concept to Real-World Performance",
+        slug: "traditional-tea-machine-smart-engineering",
+        title: "Recreating the Taste of Traditional Tea Through Smart Engineering",
         description:
-            "How we move from paper requirements to field-stable firmware: debug hooks, traceability, and a practical signal-analysis workflow.",
+            "Building a machine that replicates traditional tea-making processes with precision, preserving authenticity while enabling automation and scalability.",
         publishedAt: "2025-01-15",
         updatedAt: "2025-02-01",
         author: "Tatvix Engineering",
-        authorRole: "Firmware & Systems",
-        tags: ["Firmware", "Reliability", "Quality Assurance", "Testing"],
+        authorRole: "Product Development",
+        tags: ["Automation", "Food Technology", "Process Control", "Traditional Methods"],
         sections: [
             {
                 type: "p",
-                text: "Reliability in embedded products is rarely a single heroic fix. It is the compound effect of observable behavior, bounded failure modes, and feedback loops that connect the lab bench to customer environments. This article outlines how we take a device from concept to performance that holds up outside the lab.",
+                text: "In many parts of India, especially in the Saurashtra region of Gujarat, tea is not just a beverage—it is a daily ritual shaped by habit, timing, and technique. The way it is prepared plays a significant role in its taste, texture, and overall experience. A client approached us with a simple yet meaningful idea: to build a machine that could replicate this traditional tea-making process. The goal was not just automation, but authenticity.",
             },
             {
                 type: "h2",
-                text: "Start with observable systems",
+                text: "Understanding the Gap",
             },
             {
                 type: "p",
-                text: "Before optimizing paths or shaving microseconds, we instrument the system so we can answer: what failed, where, and under what context (temperature, supply voltage, RF noise)? Knowing exactly what happened in the field is more valuable than trying to guess from a generic error code.",
-            },
-            {
-                type: "h3",
-                text: "Debug hooks that survive bring-up",
+                text: "Most tea-making machines available today focus on convenience. They typically use pre-mixed powders or combine pre-heated milk and water with tea bags. While these methods are quick, they often fail to deliver the depth of flavor associated with traditionally brewed tea.",
             },
             {
                 type: "p",
-                text: "Every non-recoverable fault should leave a breadcrumb. We design our software so that when an unexpected event occurs, it safely records the context before resetting. This allows our engineering team to review exactly what led to the issue and resolve it permanently.",
+                text: "The client's concern was clear: existing solutions compromise on taste because they skip the actual cooking process. The richness of traditionally prepared tea comes from controlled boiling, ingredient timing, and repeated heating cycles—elements that are difficult to replicate in automated systems.",
             },
             {
                 type: "h2",
-                text: "Signal analysis workflow",
+                text: "Defining the Real Challenge",
             },
             {
                 type: "p",
-                text: "When hardware and software interact, issues can hide in the space between them. We drive our analysis with a repeatable loop: capture the issue, time-correlate the data, form a hypothesis, change one variable, and re-measure. This systematic approach eliminates guesswork.",
-            },
-            {
-                type: "ul",
-                items: [
-                    "Mark critical software events so they can be monitored alongside hardware signals.",
-                    "Log data transfers with timestamps to spot timing issues.",
-                    "Compare power supply stability during heavy wireless transmission bursts.",
-                ],
-            },
-            {
-                type: "h3",
-                text: "Closing the loop in the field",
+                text: "The challenge was not simply to mix ingredients and heat them. It was to recreate a very specific process that people are accustomed to. In traditional preparation, tea is boiled in cycles. As it heats, the liquid rises due to the presence of milk. At that moment, the heat is reduced, allowing it to settle. This cycle is repeated multiple times. This process enhances mixing, improves texture, and develops a richer taste.",
             },
             {
                 type: "p",
-                text: "Finally, we define success metrics in customer terms: crash-free sessions, recovery rates, and consistent response times. Reliability is measurable—we treat it as part of our definition of done, not as a late-phase surprise.",
+                text: "Replicating this behavior in a machine required more than standard automation. It required understanding both the process and the intent behind it.",
+            },
+            {
+                type: "h2",
+                text: "From Concept to System Design",
+            },
+            {
+                type: "p",
+                text: "To bring this idea to life, we designed a system that could manage both ingredient handling and the cooking process with precision. Ingredients such as tea and sugar are stored in dedicated containers and dispensed in controlled quantities. Milk and water are managed through calibrated pumping mechanisms to ensure consistency across every preparation.",
+            },
+            {
+                type: "p",
+                text: "For the heating process, an induction-based system was selected. This allowed better control over temperature changes and faster response times compared to conventional heating methods. A user interface was added to guide operation and provide visibility into the brewing process, making the system intuitive and easy to use.",
+            },
+            {
+                type: "h2",
+                text: "Solving the Core Problem",
+            },
+            {
+                type: "p",
+                text: "One of the most critical challenges was detecting when the tea rises during boiling. This moment is essential for controlling the heating cycle, but it is difficult to measure reliably in a high-temperature environment.",
+            },
+            {
+                type: "p",
+                text: "Instead of relying on conventional sensors, we developed a simple and effective approach based on liquid contact detection. By placing conductive elements at different levels inside the vessel, the system can detect when the liquid reaches a certain height. This signal is then used to adjust the heating automatically. This method allowed the system to replicate the rise-and-settle cycles that are central to traditional tea preparation.",
+            },
+            {
+                type: "h2",
+                text: "Delivering the Experience",
+            },
+            {
+                type: "p",
+                text: "The final system successfully bridges the gap between tradition and automation. It does not rely on shortcuts or substitutes. Instead, it follows the same process that would be used in a home kitchen—just with consistency and repeatability. The result is a solution that preserves the original intent of the client's idea: delivering tea that tastes authentic, while making the process efficient and scalable.",
+            },
+            {
+                type: "h2",
+                text: "Conclusion",
+            },
+            {
+                type: "p",
+                text: "This project highlights an important principle in product development. Technology is most effective when it respects the context in which it is used. By focusing on the actual experience rather than just the outcome, it is possible to build solutions that are both practical and meaningful. In this case, the goal was not just to make tea—it was to preserve a tradition through thoughtful engineering.",
             },
         ],
     },
     {
-        slug: "scalable-iot-systems-esp32",
-        title: "Building Scalable IoT Systems with ESP32: Connectivity Meets Reliability",
+        slug: "localizing-advanced-ro-system-dependency-to-innovation",
+        title: "Localizing an Advanced RO System: From Dependency to Scalable Innovation",
         description:
-            "How we design ESP32 systems for seamless provisioning, reliable cloud uplinks, and resilient over-the-air updates.",
+            "How we transformed a TDS monitoring system from external dependency to a fully controlled, locally developed solution with improved reliability and faster iteration cycles.",
         publishedAt: "2025-02-10",
         author: "Tatvix Engineering",
-        authorRole: "IoT & Connectivity",
-        tags: ["ESP32", "IoT Architecture", "Cloud Connectivity", "OTA Updates"],
+        authorRole: "Systems Engineering",
+        tags: ["Water Purification", "TDS Monitoring", "System Localization", "Product Development"],
         sections: [
             {
                 type: "p",
-                text: "ESP32-class modules are attractive because they collapse Wi-Fi, Bluetooth, and ample processing power into one cost-effective component. However, the challenge lies in the architecture: mixing setup processes, application logic, and secure cloud communication on a single chip without boundaries can lead to dropped connections and painful update experiences. Here is how we structure multi-protocol designs for stability.",
+                text: "In the water purification industry, consistency and control are critical. For one of our clients, maintaining the right water quality was not just a feature—it was the core value of their product. The client had already developed a unique system that could monitor and control TDS (Total Dissolved Solids) levels in real time. The product was functional and already present in the market. However, scaling and maintaining it posed significant challenges.",
             },
             {
                 type: "h2",
-                text: "Reference topology: gateway vs. device roles",
+                text: "The Existing System",
             },
             {
                 type: "p",
-                text: "In fleet deployments, we often split concerns. Constrained edge nodes speak lightweight protocols to a central hub, and the hub manages the heavy lifting of secure cloud communication. When the ESP32 acts as the hub, we treat its wireless and networking capabilities as managed services with explicit performance budgets, ensuring they never starve the main application of resources.",
-            },
-            {
-                type: "h3",
-                text: "Balancing multiple wireless protocols",
-            },
-            {
-                type: "p",
-                text: "Running Bluetooth and Wi-Fi simultaneously requires careful prioritization. Setup and provisioning windows can yield to more critical tasks, while steady-state data transmission should never interrupt essential control loops. We structure our software to keep these stacks from interfering with each other.",
+                text: "The product was designed to continuously measure water quality and adjust it to match a user-defined TDS level. This allowed users to maintain consistent taste and mineral balance, which is especially important in drinking water systems. While the concept was strong, the implementation faced two major issues.",
             },
             {
                 type: "h2",
-                text: "What “good enough” looks like",
+                text: "The Challenges",
             },
             {
                 type: "p",
-                text: "While specific numbers vary with the physical environment and security requirements, we target strict performance metrics in the lab before a product sees the real world. This includes maintaining idle processing headroom for background tasks, ensuring low-latency data publishing, and keeping connection timing stable even when multiple radios are active.",
+                text: "The first issue was related to measurement stability. A TDS sensor was placed at the bottom of the storage tank to monitor water quality. However, whenever new water entered the tank, the readings fluctuated rapidly. This made it difficult to rely on real-time data for accurate control, leading to inconsistent output.",
             },
             {
-                type: "h3",
-                text: "Operational checklist for production",
+                type: "p",
+                text: "The second issue was operational. The electronics for the system were designed and manufactured outside India. Even minor modifications required coordination with external teams, resulting in long delays. This not only slowed down development but also impacted production timelines and overall business efficiency.",
+            },
+            {
+                type: "h2",
+                text: "Rethinking the Approach",
+            },
+            {
+                type: "p",
+                text: "The objective was clear: improve the reliability of TDS measurement, enable faster development and iteration, and bring full control of the system within India. Instead of making incremental changes, we chose to redesign the system from the ground up while preserving the original product vision.",
+            },
+            {
+                type: "h2",
+                text: "Engineering the Solution",
+            },
+            {
+                type: "p",
+                text: "We developed a new control system tailored to the product's requirements. The focus was on improving how the system interprets water quality in dynamic conditions. Since fluctuations were caused by incoming water disturbing the tank environment, the solution required both hardware and system-level improvements.",
+            },
+            {
+                type: "p",
+                text: "The redesigned system ensured that measurements are interpreted more reliably during water inflow, control decisions are based on stable and meaningful data, and the overall system responds smoothly rather than reacting to noise. In parallel, we designed and developed a new electronics board locally. This provided complete flexibility for future updates, testing, and customization without external dependency.",
+            },
+            {
+                type: "h2",
+                text: "The Outcome",
             },
             {
                 type: "ul",
                 items: [
-                    "Ensure memory is partitioned to safely store factory defaults and redundant over-the-air update slots.",
-                    "Store unique device credentials securely to prevent cloning or unauthorized access.",
-                    "Implement back-pressure mechanisms: if the cloud connection is slow, drop or compress old data before the device runs out of memory.",
+                    "TDS monitoring became stable and reliable in real-world usage",
+                    "The system could consistently maintain the desired output quality",
+                    "Development and iteration cycles were significantly reduced",
+                    "Production became more streamlined with local control",
                 ],
+            },
+            {
+                type: "p",
+                text: "Most importantly, the product moved from being dependent on external changes to becoming a fully manageable and scalable solution.",
+            },
+            {
+                type: "h2",
+                text: "Conclusion",
+            },
+            {
+                type: "p",
+                text: "This project demonstrates the importance of not just building a working system, but building one that can evolve efficiently. By combining system-level thinking with practical engineering, it is possible to improve both product performance and business operations. In this case, the result was not just a better device, but a more sustainable and scalable product ecosystem.",
             },
         ],
     },
     {
-        slug: "smart-consumer-devices-embedded-intelligence",
-        title: "Developing Smart Consumer Devices with Embedded Intelligence",
+        slug: "scalable-iot-module-replace-external-dependencies",
+        title: "Building a Scalable IoT Module to Replace External Dependencies",
         description:
-            "Sensor integration, edge processing, and safety patterns for consumer-grade devices—from first prototype to store-shelf expectations.",
+            "Creating a universal IoT communication module to eliminate third-party dependencies while enabling reliable data flow and future product scalability.",
         publishedAt: "2025-03-05",
         author: "Tatvix Engineering",
-        authorRole: "Product Strategy",
-        tags: ["Consumer IoT", "Smart Devices", "Product Safety", "User Experience"],
+        authorRole: "IoT Architecture",
+        tags: ["IoT Modules", "Communication Systems", "Product Independence", "Scalable Solutions"],
         sections: [
             {
                 type: "p",
-                text: "Consumer smart devices sit at the intersection of cost pressure, user experience, and reliability. “Embedded intelligence” isn't just about machine learning—it is about deterministic behavior when the cloud is offline, graceful degradation when sensors disagree, and hardware-enforced safety where it matters most.",
+                text: "As connected products become more common, the reliability and control of the underlying ecosystem become critical. For one of our clients, this concern became a key driver for change. The client had an existing product that relied on an external communication module to connect with cloud services. While the system was functional, it introduced dependencies that raised both operational and strategic concerns.",
             },
             {
                 type: "h2",
-                text: "The path from sensor to experience",
+                text: "The Existing Situation",
             },
             {
                 type: "p",
-                text: "We model the flow of data from raw sensor readings to user-visible outcomes early in the design process. Calibration, drift compensation, and confidence scoring should be foundational features, not bolted on after the mobile app is finished. This ensures the user only sees stable, actionable information.",
+                text: "The product used a third-party communication solution to send and receive data from a remote server and enable mobile application connectivity. However, both the communication layer and application ecosystem were controlled externally. This meant limited visibility into how data was handled, dependence on external infrastructure for continued operation, and uncertainty around long-term availability and compliance.",
             },
             {
-                type: "h3",
-                text: "Safety mechanisms checklist",
+                type: "h2",
+                text: "The Challenge",
+            },
+            {
+                type: "p",
+                text: "The client wanted to eliminate this dependency without redesigning the entire product. At the same time, they had a broader vision: replace the existing communication system, ensure reliable and controlled data flow, and create a reusable solution that could be integrated into future products.",
+            },
+            {
+                type: "p",
+                text: "This was not just a replacement task—it was an opportunity to build a more flexible and scalable foundation.",
+            },
+            {
+                type: "h2",
+                text: "Defining the Approach",
+            },
+            {
+                type: "p",
+                text: "Instead of modifying the existing system extensively, we proposed developing a separate IoT communication module. This module would interface with the existing device, handle all communication with the server, and operate independently of the original external solution. Additionally, it was designed to be universal, so it could be reused across different products in the future.",
+            },
+            {
+                type: "h2",
+                text: "Engineering the Solution",
+            },
+            {
+                type: "p",
+                text: "The system was designed with three key goals in mind: compatibility, universality, and cost efficiency. The module needed to integrate seamlessly with the existing product without requiring major changes. The architecture was kept flexible so that the same module could be used in other non-connected products to enable IoT capabilities. Since the solution was intended for production use, it had to be optimized for cost without compromising reliability or performance.",
+            },
+            {
+                type: "p",
+                text: "The result was a compact and efficient module capable of managing communication, handling data exchange, and supporting future scalability.",
+            },
+            {
+                type: "h2",
+                text: "Overcoming Key Challenges",
+            },
+            {
+                type: "p",
+                text: "Designing a universal system is inherently complex. The module needed to work across different product types, handle varying communication requirements, and remain simple enough for integration and deployment. Balancing flexibility, reliability, and cost was the core engineering challenge.",
+            },
+            {
+                type: "h2",
+                text: "The Outcome",
             },
             {
                 type: "ul",
                 items: [
-                    "Independent monitoring to reboot the system if the main software stalls.",
-                    "Thermal throttling policies and power stability checks under worst-case wireless load.",
-                    "Hardware interlocks so motors or heaters are gated by redundant checks to prevent unsafe conditions.",
-                    "Privacy-by-design logging, ensuring personal data never ends up in diagnostic traces.",
-                    "Fail-safe network loss handling: local schedules continue, and the cloud acts as an enhancer, not a single point of failure.",
+                    "The product now operates with a self-managed communication layer",
+                    "Data flow is more transparent and reliable",
+                    "The client has full control over future updates and integrations",
+                    "The same module can be reused to enable IoT features in other products",
                 ],
             },
             {
+                type: "p",
+                text: "This not only solved the immediate problem but also created a foundation for future product development.",
+            },
+            {
                 type: "h2",
-                text: "Smart features without surprises",
+                text: "Conclusion",
             },
             {
                 type: "p",
-                text: "When adding on-device decision making (edge inference), we strictly budget memory and processing time. We also ensure the device can fall back to a baseline, rules-only mode if a smarter algorithm encounters an unexpected situation or fails an update.",
-            },
-            {
-                type: "p",
-                text: "Shipping consumer intelligence is as much about process as it is about algorithms: repeatable manufacturing tests, clear recovery paths, and honest communication about how the device will perform at scale.",
+                text: "In connected systems, control over communication and data is just as important as the functionality itself. By developing a modular and reusable IoT solution, it is possible to reduce dependency, improve flexibility, and prepare for long-term scalability. This project highlights how thoughtful system design can transform a limitation into an opportunity for growth.",
             },
         ],
     },
     {
-        slug: "building-complete-iot-solutions-sensor-to-screen",
-        title: "Building Complete IoT Solutions: From Sensor to Screen",
+        slug: "battery-efficient-industrial-pressure-monitoring",
+        title: "Designing a Battery-Efficient Industrial Pressure Monitoring System",
         description:
-            "Why treating hardware and software as a single unified ecosystem accelerates time-to-market and prevents vendor lock-in.",
+            "Creating a compact, battery-operated pressure monitoring device that delivers industrial-grade accuracy while maintaining extended operational life through intelligent power management.",
         publishedAt: "2025-03-20",
         author: "Tatvix Engineering",
-        authorRole: "Full Stack Systems",
-        tags: ["IoT Architecture", "Full Stack", "System Design", "Cloud Connectivity"],
+        authorRole: "Industrial Systems",
+        tags: ["Industrial Monitoring", "Battery Efficiency", "Pressure Sensors", "Power Management"],
         sections: [
             {
                 type: "p",
-                text: "Historically, companies building connected products had to hire a hardware firm for the PCB, a firmware contractor to make it run, and a separate web agency to build the cloud backend and mobile app. This fragmented approach usually results in integration nightmares, misaligned data contracts, and delayed launches. Here is why the modern approach requires a unified architecture from sensor to screen.",
+                text: "In industrial environments, accurate measurement is essential for safety, performance, and reliability. Even small variations in pressure readings can impact system behavior and decision-making. One of our clients approached us with a focused requirement: to develop a compact, battery-operated device capable of delivering precise pressure measurements with real-time visibility.",
             },
             {
                 type: "h2",
-                text: "The cost of boundaries",
+                text: "Understanding the Requirement",
             },
             {
                 type: "p",
-                text: "When the hardware team does not understand the cloud architecture, they may choose an inefficient payload format. When the mobile team does not understand the firmware limitations, they might expect instantaneous responses from a device that needs to sleep to conserve battery. A unified team views the system holistically, making trade-offs where they make the most sense.",
+                text: "The client needed a solution that could provide accurate and stable pressure readings, display data clearly on a custom-designed segment display, and operate efficiently on battery power for extended durations. Unlike typical monitoring systems, this device was intended to be portable and independent of continuous power sources, making energy efficiency a critical factor.",
+            },
+            {
+                type: "h2",
+                text: "The Core Challenge",
+            },
+            {
+                type: "p",
+                text: "Balancing precision and power consumption is not straightforward. High-accuracy measurement systems often require frequent data sampling, continuous signal processing, and stable and responsive output. At the same time, battery-powered devices demand minimal energy usage, efficient operation over long periods, and smart resource management. The challenge was to achieve both—without compromising either.",
+            },
+            {
+                type: "h2",
+                text: "Defining the Approach",
+            },
+            {
+                type: "p",
+                text: "We approached the problem from both hardware and system design perspectives. The focus was on ensuring reliable signal acquisition for accurate pressure measurement, minimizing unnecessary processing and power usage, and designing a system that responds quickly without constant high energy consumption. A custom display interface was also developed to present readings clearly and consistently, aligned with the product's industrial use case.",
+            },
+            {
+                type: "h2",
+                text: "Engineering for Efficiency",
+            },
+            {
+                type: "p",
+                text: "To meet the power constraints, we explored multiple strategies across the system. Careful selection and configuration of components ensured that the system consumed only the required energy during operation. Unnecessary power draw was minimized through efficient circuit design.",
+            },
+            {
+                type: "p",
+                text: "Instead of running all functions continuously, the system was designed to operate selectively. It activates critical processes when needed while conserving energy during idle periods. Special attention was given to ensure that the device delivers pressure readings without noticeable delay, maintaining usability in real-world industrial conditions.",
+            },
+            {
+                type: "h2",
+                text: "The Outcome",
             },
             {
                 type: "ul",
                 items: [
-                    "Design unified data models that map cleanly from C structs in firmware to JSON in the cloud to React state in the frontend.",
-                    "Establish security roots of trust at the hardware layer that seamlessly authenticate with your web backend.",
-                    "Build OTA (Over-The-Air) update mechanisms that are triggered easily from a web admin panel."
-                ]
-            },
-            {
-                type: "h2",
-                text: "The unified CI/CD pipeline",
+                    "Delivered industrial-grade pressure measurement accuracy",
+                    "Provided clear and consistent output through a custom display",
+                    "Operated efficiently on a single battery charge for extended use",
+                    "Maintained responsiveness without excessive power consumption",
+                ],
             },
             {
                 type: "p",
-                text: "True full-stack IoT means that a change to a sensor's reporting frequency on the edge device automatically updates the expected ingestion rate in the cloud, which in turn updates the visual threshold on the web dashboard. Keeping these layers in sync requires rigorous, cross-domain CI/CD pipelines.",
-            }
+                text: "The result was a reliable and practical solution tailored to the client's specific application.",
+            },
+            {
+                type: "h2",
+                text: "Conclusion",
+            },
+            {
+                type: "p",
+                text: "In product development, constraints often define innovation. In this case, the need for both precision and battery efficiency led to a carefully engineered system that performs reliably in real-world conditions. By addressing both measurement accuracy and energy management together, it is possible to build solutions that are not only functional, but also sustainable and scalable for industrial use.",
+            },
         ],
     },
-    {
-        slug: "mobile-apps-for-embedded-devices",
-        title: "Mobile Apps for Embedded Devices: Best Practices and Architecture",
-        description:
-            "Architecting reliable, responsive mobile companion apps that gracefully handle the physical constraints of BLE and WiFi IoT devices.",
-        publishedAt: "2025-04-05",
-        author: "Tatvix Engineering",
-        authorRole: "Mobile Development",
-        tags: ["Mobile Apps", "React Native", "BLE", "User Experience"],
-        sections: [
-            {
-                type: "p",
-                text: "Building a mobile app for an IoT device is fundamentally different from building a standard CRUD application. Your app must interact with a physical piece of hardware that might lose power, drop its connection, or be physically out of range. Handling these physical realities elegantly is the difference between a 1-star and 5-star app store review.",
-            },
-            {
-                type: "h2",
-                text: "State management for physical realities",
-            },
-            {
-                type: "p",
-                text: "In a traditional app, when you press a button to save a profile, you expect an immediate HTTP response. When you press a button to open a physical smart lock over BLE, the app must queue the command, establish a connection, negotiate security, write the characteristic, await the hardware acknowledgment, and then update the UI. This requires a robust state machine.",
-            },
-            {
-                type: "checklist",
-                items: [
-                    { title: "Optimistic UI Updates", detail: "Avoid them for hardware controls. Only show the 'locked' state when the hardware confirms the deadbolt has moved." },
-                    { title: "Connection Resiliency", detail: "Automatically attempt reconnections in the background when a device temporarily drops out of BLE range." },
-                    { title: "Battery Awareness", detail: "Throttle app polling rates based on the reported battery life of the embedded device." }
-                ]
-            },
-            {
-                type: "h2",
-                text: "Cross-platform vs Native",
-            },
-            {
-                type: "p",
-                text: "While native Swift and Kotlin offer the absolute highest performance for Bluetooth stacks, modern frameworks like React Native and Flutter, when paired with well-written native bridging libraries (like React Native BLE PLX), offer 95% of the performance while cutting development time and maintaining a unified codebase.",
-            }
-        ],
-    },
-    {
-        slug: "web-dashboards-industrial-iot",
-        title: "Web Dashboards for Industrial IoT: Real-time Data Visualization",
-        description:
-            "Designing robust, high-throughput web interfaces capable of digesting and visualizing millions of sensor data points without crashing the browser.",
-        publishedAt: "2025-04-22",
-        author: "Tatvix Engineering",
-        authorRole: "Web Systems",
-        tags: ["Web Apps", "Data Visualization", "Industrial IoT", "Next.js"],
-        sections: [
-            {
-                type: "p",
-                text: "Industrial IoT deployments generate a staggering amount of data. A factory floor with 1,000 vibration sensors reporting at 10Hz creates a massive ingestion pipeline. But simply storing that data isn't enough—it must be rendered into actionable, real-time insights on a web dashboard without bringing the user's browser to a crawl.",
-            },
-            {
-                type: "h2",
-                text: "Data decimation and windowing",
-            },
-            {
-                type: "p",
-                text: "You cannot plot 1 million points on a standard web chart. We employ data decimation techniques on the backend, aggregating time-series data into chunks (e.g., minute, hour, day averages) based on the current zoom level of the dashboard. As the user zooms in, the backend serves higher-resolution data for that specific time window.",
-            },
-            {
-                type: "h3",
-                text: "WebSockets vs Polling",
-            },
-            {
-                type: "p",
-                text: "For real-time critical alerts (like a machine overheating), we rely on WebSockets or Server-Sent Events (SSE) to push notifications instantly to the dashboard. However, for historical charting, standard REST or GraphQL polling is often more efficient and heavily cacheable via CDNs.",
-            },
-            {
-                type: "h2",
-                text: "Designing for the operator",
-            },
-            {
-                type: "p",
-                text: "Industrial dashboards must be deeply utilitarian. We prioritize high contrast, large typography, and immediate visual hierarchy. If a machine on line 4 is failing, the dashboard should scream that fact instantly, rather than burying it beneath generic analytics graphs.",
-            }
-        ],
-    }
 ];
 
 export const BLOG_POSTS: BlogPost[] = RAW_POSTS.map((p) => ({
