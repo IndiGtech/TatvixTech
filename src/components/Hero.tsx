@@ -21,14 +21,14 @@ export default function Hero() {
                     >
                         <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight">
                             <span className="text-slate-800 dark:text-white">
-                                Professional Embedded Systems &
+                                Ideas Into  
                             </span>
                             <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                                IoT Development
+                            Market-Ready Connected
                             </span>
                             <br />
-                            <span className="text-slate-900 dark:text-white">Company</span>
+                            <span className="text-slate-900 dark:text-white">Products</span>
                         </h1>
                     </motion.div>
 
@@ -38,7 +38,7 @@ export default function Hero() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="text-lg md:text-xl text-slate-800 dark:text-slate-200 max-w-lg leading-relaxed"
                     >
-                        Leading embedded systems and IoT development company specializing in hardware design, firmware development, PCB design, and complete product solutions from concept to mass production.
+                        Complete product development - from hardware design to software applications, cloud to mobile. We turn concepts into production-ready solutions.
                     </motion.p>
 
                     <motion.div
