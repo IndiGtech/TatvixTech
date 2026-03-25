@@ -185,11 +185,11 @@ function Satellite({ icon, angle, radius, delay }: { icon: React.ReactNode, labe
                 className="relative group cursor-default"
             >
                 {/* Node Glow */}
-                <div className="absolute inset-0 bg-cyan-500/20 rounded-2xl blur-lg transition-opacity duration-300 opacity-50 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-cyan-500/30 dark:bg-cyan-400/25 rounded-2xl blur-lg transition-opacity duration-300 opacity-70 group-hover:opacity-100" />
 
                 {/* Glass Container */}
-                <div className="relative p-4 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 shadow-lg md:shadow-[0_0_20px_rgba(0,0,0,0.3)] flex flex-col items-center justify-center gap-2 transition-transform duration-300 group-hover:scale-110 group-hover:border-cyan-400/50 group-hover:bg-white/10">
-                    <div className="text-cyan-600 dark:text-cyan-100 group-hover:text-cyan-500 dark:group-hover:text-cyan-300 drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]">
+                <div className="relative p-4 rounded-2xl bg-white/20 dark:bg-white/15 backdrop-blur-md border border-white/30 dark:border-white/20 shadow-lg md:shadow-[0_0_20px_rgba(0,0,0,0.3)] flex flex-col items-center justify-center gap-2 transition-transform duration-300 group-hover:scale-110 group-hover:border-cyan-400/50 group-hover:bg-white/30 dark:group-hover:bg-white/25">
+                    <div className="text-cyan-700 dark:text-cyan-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-100 drop-shadow-[0_0_8px_rgba(0,255,255,0.5)]">
                         {icon}
                     </div>
                     {/* Optional Label (Hidden by default, reveal on larger screens or hover if needed? Kept hidden for clean 'Icon only' look or minimal label) */}
