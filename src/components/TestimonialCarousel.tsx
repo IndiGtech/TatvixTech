@@ -27,7 +27,7 @@ const TESTIMONIALS: Testimonial[] = [
     {
         id: "2",
         quote:
-            "Tatvix understood our idea deeply and delivered the traditional tea experience we wanted.",
+            "They translated our idea into a reliable product that replicates traditional tea-making effectively.",
         author: "Mr. Kishore Shah",
         role: "Product Manager",
         company: "",

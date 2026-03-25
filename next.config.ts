@@ -102,13 +102,17 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Development indicators (simplified for Next.js 16)
-  devIndicators: false,
 
   // Experimental features for performance
   experimental: {
     optimizeCss: true,
   },
+
+  // Ensure proper bundling of icon libraries
+  transpilePackages: ['lucide-react'],
+  
+  // Turbopack configuration for Next.js 16
+  turbopack: {},
 };
 
 export default nextConfig;

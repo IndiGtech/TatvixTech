@@ -56,17 +56,37 @@
     overflow-x: hidden;
   }
 
-  /* Fix for animation icon visibility */
-  .satellite-icon {
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-    will-change: transform;
-  }
+/* Fix for animation icon visibility */
+.satellite-icon {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+}
 
-  /* Ensure icons stay visible during animations */
-  [data-framer-motion] {
-    transform-style: preserve-3d;
-  }
+/* Ensure icons stay visible during animations */
+[data-framer-motion] {
+  transform-style: preserve-3d;
+}
+
+/* Force icon rendering in production */
+svg[data-lucide] {
+  display: inline-block !important;
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Ensure Lucide icons are properly rendered */
+.lucide {
+  display: inline-block !important;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
 }
 
 @layer utilities {

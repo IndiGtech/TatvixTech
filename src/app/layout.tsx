@@ -7,6 +7,8 @@ import { SITE_URL, SEO_CONFIG } from "@/lib/site";
 import StructuredData, { getOrganizationSchema } from "@/components/StructuredData";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import SEOMonitoring from "@/components/SEOMonitoring";
+// Import icon registry to prevent tree-shaking
+import "@/lib/iconRegistry";
 
 const inter = Inter({
   subsets: ["latin"],
