@@ -1,7 +1,14 @@
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
-import ContactModal from "@/components/ContactModal";
+import dynamic from "next/dynamic";
+
+// The modal (271 lines + Framer Motion) is only loaded when first opened, so its
+// JS stays out of the initial bundle. Once mounted it persists so AnimatePresence
+// exit animations still play.
+const ContactModal = dynamic(() => import("@/components/ContactModal"), {
+    ssr: false,
+});
 
 interface ContactModalContextType {
     openContactModal: () => void;
@@ -13,14 +20,18 @@ const ContactModalContext = createContext<ContactModalContextType | undefined>(u
 
 export function ContactModalProvider({ children }: { children: ReactNode }) {
     const [isOpen, setIsOpen] = useState(false);
+    const [hasOpened, setHasOpened] = useState(false);
 
-    const openContactModal = () => setIsOpen(true);
+    const openContactModal = () => {
+        setHasOpened(true);
+        setIsOpen(true);
+    };
     const closeContactModal = () => setIsOpen(false);
 
     return (
         <ContactModalContext.Provider value={{ openContactModal, closeContactModal, isContactModalOpen: isOpen }}>
             {children}
-            <ContactModal isOpen={isOpen} onClose={closeContactModal} />
+            {hasOpened && <ContactModal isOpen={isOpen} onClose={closeContactModal} />}
         </ContactModalContext.Provider>
     );
 }

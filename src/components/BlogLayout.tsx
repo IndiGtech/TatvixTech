@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronLeft, Clock, User } from "lucide-react";
+import { ChevronLeft, Clock, User, CalendarDays } from "lucide-react";
 import ShareButtons from "./ShareButtons";
 import { absoluteUrl } from "@/lib/site";
 import type { BlogPost } from "@/data/blogPosts";
@@ -74,6 +74,27 @@ export default function BlogLayout({ post, children }: BlogLayoutProps) {
                             <span className="inline-flex items-center gap-1.5">
                                 <Clock className="h-4 w-4 text-primary" />
                                 {post.readingTimeMinutes} min read
+                            </span>
+                            <span aria-hidden className="text-slate-400 dark:text-white/20">
+                                |
+                            </span>
+                            <span className="inline-flex items-center gap-1.5">
+                                <CalendarDays className="h-4 w-4 text-accent" />
+                                {post.updatedAt && post.updatedAt !== post.publishedAt ? (
+                                    <>
+                                        Updated{" "}
+                                        <time dateTime={post.updatedAt}>
+                                            {formatDate(post.updatedAt)}
+                                        </time>
+                                    </>
+                                ) : (
+                                    <>
+                                        Published{" "}
+                                        <time dateTime={post.publishedAt}>
+                                            {formatDate(post.publishedAt)}
+                                        </time>
+                                    </>
+                                )}
                             </span>
                         </div>
                         <ShareButtons

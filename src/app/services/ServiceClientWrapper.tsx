@@ -6,93 +6,14 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ServiceCard from "@/components/ServiceCard";
 import CTASection from "@/components/CTASection";
-import { CircuitBoard, Code2, Wifi, TestTube2, Zap, Monitor, Smartphone, Code } from "lucide-react";
+import { Zap } from "lucide-react";
 import StructuredData, { getServiceSchema } from "@/components/StructuredData";
 import { SITE_URL } from "@/lib/site";
-
-const serviceDetails = [
-    {
-        id: "hardware-design",
-        title: "Hardware Design & PCB Layout",
-        description: "End-to-end hardware engineering for complex embedded systems, ensuring reliability and compliance.",
-        icon: CircuitBoard,
-        accentColor: "cyan",
-        processSteps: ["Requirement Analysis", "Component Selection", "Schematic Capture", "PCB Layout (HDI, Flex)", "DFM & DFA Check"],
-        deliverables: ["Gerber & ODB++ Files", "Bill of Materials (BOM)", "Assembly Drawings", "3D STEP Models"],
-        timeline: "2 to 6 weeks depending on complexity",
-        technologies: ["Altium Designer", "KiCad", "Eagle", "OrCAD"],
-    },
-    {
-        id: "firmware",
-        title: "Firmware Development",
-        description: "High-performance, secure, and robust firmware for microcontrollers and microprocessors.",
-        icon: Code2,
-        accentColor: "purple",
-        processSteps: ["Architecture Design", "HAL/BSP Development", "RTOS Integration", "Application Logic", "OTA & Bootloader implementation"],
-        deliverables: ["Source Code repository", "Binary files (.hex, .bin)", "API Documentation", "Test Scripts"],
-        timeline: "4 to 12 weeks",
-        technologies: ["C/C++", "FreeRTOS", "Zephyr", "Embedded Linux", "ARM Cortex-M/A"],
-    },
-    {
-        id: "iot",
-        title: "IoT & Cloud Connectivity",
-        description: "Secure protocol implementation and scalable cloud integration for connected devices.",
-        icon: Wifi,
-        accentColor: "green",
-        processSteps: ["Protocol Selection", "Security Implementation (TLS/SSL)", "Edge Computing Logic", "Cloud Gateway Setup", "Dashboard Creation"],
-        deliverables: ["Cloud Architecture Document", "Provisioning Scripts", "Web/Mobile Dashboards", "API Endpoints"],
-        timeline: "4 to 10 weeks",
-        technologies: ["MQTT, CoAP", "AWS IoT, Azure IoT", "LoRaWAN, BLE, Wi-Fi, NB-IoT", "Python"],
-    },
-    {
-        id: "testing",
-        title: "Testing & Validation",
-        description: "Rigorous environmental testing, compliance pre-scans, and field validation.",
-        icon: TestTube2,
-        accentColor: "blue",
-        processSteps: ["Test Plan Creation", "Functional Testing", "Environmental Stress (Temp/Humidity)", "EMC/EMI Pre-compliance", "Field Trials"],
-        deliverables: ["Detailed Test Reports", "Compliance Readiness Certificate", "Bug Tracking Logs", "Optimization Recommendations"],
-        timeline: "2 to 8 weeks",
-        technologies: ["Oscilloscopes, Logic Analyzers", "Spectrum Analyzers", "Thermal Chambers", "Automated HIL Testing"],
-    },
-    {
-        id: "web-apps",
-        title: "Web Applications",
-        description: "Dashboard development, admin interfaces, and real-time monitoring systems for connected devices.",
-        icon: Monitor,
-        accentColor: "emerald",
-        processSteps: ["UI/UX Design", "Frontend Development", "Backend API Creation", "Hardware Data Integration", "Deployment & Hosting"],
-        deliverables: ["Responsive Web Dashboard", "Admin Control Panel", "Source Code", "API Documentation"],
-        timeline: "4 to 10 weeks",
-        technologies: ["React / Next.js", "Node.js", "GraphQL / REST", "WebSockets", "PostgreSQL / MongoDB"],
-    },
-    {
-        id: "mobile-apps",
-        title: "Mobile Applications",
-        description: "Native iOS/Android apps, cross-platform solutions, and device companion apps with BLE/WiFi integration.",
-        icon: Smartphone,
-        accentColor: "pink",
-        processSteps: ["Mobile UX Design", "App Development", "Hardware Connectivity (BLE/WiFi)", "Beta Testing", "App Store Submission"],
-        deliverables: ["iOS & Android Apps", "Companion App Source Code", "App Store Listings", "User Manual"],
-        timeline: "6 to 12 weeks",
-        technologies: ["React Native", "Flutter", "Swift (iOS)", "Kotlin (Android)", "CoreBluetooth / RxAndroidBle"],
-    },
-    {
-        id: "custom-software",
-        title: "Custom Software",
-        description: "Desktop applications, API development, system integrations, and enterprise software solutions.",
-        icon: Code,
-        accentColor: "cyan",
-        processSteps: ["Architecture Design", "API Development", "System Integration", "End-to-End Testing", "Enterprise Deployment"],
-        deliverables: ["Custom Desktop App", "Integration Scripts", "Enterprise Backend", "System Architecture Documentation"],
-        timeline: "8 to 16 weeks",
-        technologies: ["Electron / Tauri", "Python", "Go / Rust", "Docker / Kubernetes", "Enterprise Service Bus"],
-    }
-];
+import { services as serviceDetails } from "@/data/services";
 
 export default function ServiceClientWrapper() {
-    const schemas = serviceDetails.map(service => 
-        getServiceSchema(service.title, service.description, `${SITE_URL}/services#${service.id}`)
+    const schemas = serviceDetails.map(service =>
+        getServiceSchema(service.title, service.description, `${SITE_URL}/services/${service.slug}`)
     );
 
     return (
@@ -122,7 +43,7 @@ export default function ServiceClientWrapper() {
                             icon={service.icon}
                             accentColor={service.accentColor}
                             delay={index * 0.1}
-                            link={`#${service.id}`}
+                            link={`/services/${service.slug}`}
                         />
                     ))}
                 </div>

@@ -1,0 +1,40 @@
+# Tatvix Technologies
+
+> Tatvix Technologies is an embedded systems and IoT product development company headquartered in Ahmedabad, India, serving clients worldwide. We take connected hardware products from concept to mass production — covering hardware/PCB design, firmware, IoT and cloud connectivity, testing and compliance, and the web/mobile software around the device.
+
+## Who it's for
+
+Startups and enterprises building physical, connected products: medical devices, industrial IoT, automotive/EV electronics, agritech, consumer electronics, and energy-management systems. Engage us for a full product build or to plug into an existing engineering team.
+
+## Services
+
+- [Embedded Hardware Design & PCB Layout](https://tatvixtech.com/services/embedded-hardware-design): Schematic capture, multi-layer/HDI/flex PCB layout, DFM/DFA, production-ready Gerber/BOM/STEP outputs.
+- [Firmware Development](https://tatvixtech.com/services/firmware-development): RTOS (FreeRTOS, Zephyr) and bare-metal firmware in C/C++ for ARM Cortex-M/A, with secure OTA bootloaders.
+- [IoT & Cloud Connectivity](https://tatvixtech.com/services/iot-cloud-connectivity): MQTT/CoAP, TLS security, AWS IoT / Azure IoT integration across BLE, Wi-Fi, LoRaWAN, and cellular.
+- [Testing & Validation](https://tatvixtech.com/services/testing-and-validation): Functional, environmental, and EMC/EMI pre-compliance testing toward CE/FCC/RoHS readiness.
+- [Web Applications](https://tatvixtech.com/services/web-application-development): Real-time IoT dashboards and admin panels (React/Next.js, Node.js, WebSockets).
+- [Mobile Applications](https://tatvixtech.com/services/mobile-app-development): Native and cross-platform companion apps with BLE/Wi-Fi device connectivity.
+- [Custom Software](https://tatvixtech.com/services/custom-software-development): Desktop apps, APIs, and enterprise system integrations.
+
+## Industries
+
+- [Medical Devices](https://tatvixtech.com/industries/medical-device-development): ISO 13485 / IEC 60601 aligned, FDA Class II/III.
+- [Industrial IoT](https://tatvixtech.com/industries/industrial-iot): Ruggedized controllers, predictive maintenance, Modbus/CAN, SCADA.
+- [Automotive & Mobility](https://tatvixtech.com/industries/automotive-embedded-systems): EV BMS, telematics, ISO 26262, AEC-Q100.
+- [Agriculture Tech](https://tatvixtech.com/industries/agritech-solutions): Solar/low-power LoRaWAN sensors for precision farming.
+- [Consumer Electronics](https://tatvixtech.com/industries/consumer-electronics): Smart home, wearables, design for mass production.
+- [Energy Management](https://tatvixtech.com/industries/energy-management-systems): Smart metering, BMS, smart-grid (DNP3).
+
+## Key pages
+
+- [Services overview](https://tatvixtech.com/services)
+- [Industries overview](https://tatvixtech.com/industries)
+- [Engineering process](https://tatvixtech.com/process)
+- [Insights / blog](https://tatvixtech.com/insights)
+- [Engagement model & how to get a quote](https://tatvixtech.com/services.md)
+
+## Contact
+
+- Email: info@tatvixtech.com
+- Phone: +91 8401301970
+- Location: Ahmedabad, Gujarat, India (serving clients worldwide)

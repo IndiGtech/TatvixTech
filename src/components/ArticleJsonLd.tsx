@@ -1,4 +1,4 @@
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, SITE_URL } from "@/lib/site";
 import type { BlogPost } from "@/data/blogPosts";
 
 interface ArticleJsonLdProps {
@@ -14,14 +14,15 @@ export default function ArticleJsonLd({ post }: ArticleJsonLdProps) {
         description: post.description,
         datePublished: post.publishedAt,
         dateModified: post.updatedAt ?? post.publishedAt,
+        // Person author (with job title) is a stronger E-E-A-T signal than Organization.
         author: {
-            "@type": "Organization",
+            "@type": "Person",
             name: post.author,
+            ...(post.authorRole ? { jobTitle: post.authorRole } : {}),
+            worksFor: { "@id": `${SITE_URL}/#organization` },
         },
         publisher: {
-            "@type": "Organization",
-            name: "Tatvix",
-            url: absoluteUrl("/"),
+            "@id": `${SITE_URL}/#organization`,
         },
         mainEntityOfPage: {
             "@type": "WebPage",

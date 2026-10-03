@@ -72,9 +72,10 @@ export default function MobileMenu({ isOpen, onClose, links }: MobileMenuProps) 
                         <div className="flex justify-end mb-8">
                             <button
                                 onClick={onClose}
+                                aria-label="Close navigation menu"
                                 className="p-2 rounded-full hover:bg-white/10 transition-colors border border-white/5"
                             >
-                                <X className="w-6 h-6 text-primary" />
+                                <X className="w-6 h-6 text-primary" aria-hidden="true" />
                             </button>
                         </div>
 

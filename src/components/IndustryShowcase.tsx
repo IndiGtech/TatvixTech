@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { LucideIcon } from "lucide-react";
+import { LucideIcon, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export interface IndustryShowcaseProps {
     id: string;
@@ -15,6 +16,8 @@ export interface IndustryShowcaseProps {
     softwareComponents: string[];
     standards: string[];
     isLeft: boolean;
+    /** Optional link to the dedicated industry landing page. */
+    href?: string;
 }
 
 export default function IndustryShowcase({
@@ -27,7 +30,8 @@ export default function IndustryShowcase({
     solutions,
     softwareComponents,
     standards,
-    isLeft
+    isLeft,
+    href
 }: IndustryShowcaseProps) {
     return (
         <motion.section
@@ -111,6 +115,16 @@ export default function IndustryShowcase({
                         ))}
                     </div>
                 </div>
+
+                {href && (
+                    <Link
+                        href={href}
+                        className="inline-flex items-center text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+                    >
+                        Explore {name} solutions
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                    </Link>
+                )}
             </div>
         </motion.section>
     );

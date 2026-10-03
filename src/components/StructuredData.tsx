@@ -1,20 +1,34 @@
-import Script from "next/script";
-import { SITE_URL, BUSINESS_INFO } from "@/lib/site";
+import { SITE_URL, BUSINESS_INFO, LOGO_URL, OG_IMAGE_URL } from "@/lib/site";
 
 interface StructuredDataProps {
-    data: any;
+    data: unknown;
 }
 
+// Render JSON-LD directly in the server HTML (not via next/script
+// afterInteractive) so crawlers and AI bots that don't execute JS can
+// extract structured data from the initial response.
 export default function StructuredData({ data }: StructuredDataProps) {
     return (
-        <Script
-            id="structured-data"
+        <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-            strategy="afterInteractive"
         />
     );
 }
+
+// India PostalAddress, omitting postalCode when it isn't set so we never
+// publish a placeholder ZIP.
+const postalAddress = () => ({
+    "@type": "PostalAddress",
+    streetAddress: BUSINESS_INFO.address,
+    addressLocality: BUSINESS_INFO.city,
+    addressRegion: BUSINESS_INFO.state,
+    ...(BUSINESS_INFO.zip ? { postalCode: BUSINESS_INFO.zip } : {}),
+    addressCountry: BUSINESS_INFO.countryCode,
+});
+
+// Tatvix serves a global market from its India HQ.
+const areaServedWorldwide = { "@type": "Place", name: "Worldwide" };
 
 export const getOrganizationSchema = () => ({
     "@context": "https://schema.org",
@@ -25,15 +39,14 @@ export const getOrganizationSchema = () => ({
     url: SITE_URL,
     logo: {
         "@type": "ImageObject",
-        url: `${SITE_URL}/logo.png`,
-        width: 200,
-        height: 60
+        url: LOGO_URL,
     },
-    image: `${SITE_URL}/og-image.jpg`,
-    description: "Leading embedded systems and IoT development company specializing in hardware design, firmware development, and complete product solutions from concept to mass production.",
+    image: OG_IMAGE_URL,
+    description: "Embedded systems and IoT product development company (India HQ, serving clients worldwide) specializing in hardware design, firmware development, and complete product solutions from concept to mass production.",
     foundingDate: "2020",
     numberOfEmployees: "10-50",
     industry: "Technology",
+    areaServed: areaServedWorldwide,
     knowsAbout: [
         "Embedded Systems Development",
         "IoT Development",
@@ -46,27 +59,20 @@ export const getOrganizationSchema = () => ({
         "Medical Device Development",
         "Consumer Electronics"
     ],
-    address: {
-        "@type": "PostalAddress",
-        streetAddress: BUSINESS_INFO.address,
-        addressLocality: BUSINESS_INFO.city,
-        addressRegion: BUSINESS_INFO.state,
-        postalCode: BUSINESS_INFO.zip,
-        addressCountry: BUSINESS_INFO.country
-    },
+    address: postalAddress(),
     contactPoint: [
         {
             "@type": "ContactPoint",
             telephone: BUSINESS_INFO.phone,
             contactType: "customer service",
             email: BUSINESS_INFO.email,
-            availableLanguage: "English"
+            availableLanguage: ["English", "Hindi"]
         },
         {
             "@type": "ContactPoint",
             contactType: "sales",
             email: BUSINESS_INFO.email,
-            availableLanguage: "English"
+            availableLanguage: ["English", "Hindi"]
         }
     ],
     sameAs: [
@@ -111,22 +117,13 @@ export const getLocalBusinessSchema = () => ({
     "@type": "LocalBusiness",
     "@id": `${SITE_URL}/#localbusiness`,
     name: BUSINESS_INFO.name,
-    image: `${SITE_URL}/og-image.jpg`,
+    image: OG_IMAGE_URL,
+    logo: LOGO_URL,
     telephone: BUSINESS_INFO.phone,
     email: BUSINESS_INFO.email,
-    address: {
-        "@type": "PostalAddress",
-        streetAddress: BUSINESS_INFO.address,
-        addressLocality: BUSINESS_INFO.city,
-        addressRegion: BUSINESS_INFO.state,
-        postalCode: BUSINESS_INFO.zip,
-        addressCountry: BUSINESS_INFO.country
-    },
-    geo: {
-        "@type": "GeoCoordinates",
-        latitude: "40.7128",
-        longitude: "-74.0060"
-    },
+    address: postalAddress(),
+    // geo omitted until exact coordinates are confirmed (no fabricated coords).
+    areaServed: areaServedWorldwide,
     url: SITE_URL,
     priceRange: "$$$$",
     openingHoursSpecification: [
@@ -145,20 +142,11 @@ export const getWebsiteSchema = () => ({
     "@id": `${SITE_URL}/#website`,
     url: SITE_URL,
     name: BUSINESS_INFO.name,
-    description: "Leading embedded systems and IoT development company",
+    description: "Embedded systems and IoT development company",
     publisher: {
         "@id": `${SITE_URL}/#organization`
-    },
-    potentialAction: [
-        {
-            "@type": "SearchAction",
-            target: {
-                "@type": "EntryPoint",
-                urlTemplate: `${SITE_URL}/search?q={search_term_string}`
-            },
-            "query-input": "required name=search_term_string"
-        }
-    ]
+    }
+    // SearchAction removed: there is no /search route and it's disallowed in robots.
 });
 
 export const getServiceSchema = (name: string, description: string, url: string) => ({
@@ -170,10 +158,7 @@ export const getServiceSchema = (name: string, description: string, url: string)
     },
     description: description,
     url: url,
-    areaServed: {
-        "@type": "Country",
-        name: "United States"
-    },
+    areaServed: areaServedWorldwide,
     hasOfferCatalog: {
         "@type": "OfferCatalog",
         name: name,
@@ -220,6 +205,7 @@ export const getArticleSchema = (article: {
     publishedAt: string;
     updatedAt?: string;
     author: string;
+    authorRole?: string;
     url: string;
     image?: string;
 }) => ({
@@ -227,11 +213,13 @@ export const getArticleSchema = (article: {
     "@type": "Article",
     headline: article.title,
     description: article.description,
-    image: article.image || `${SITE_URL}/og-image.jpg`,
+    image: article.image || OG_IMAGE_URL,
+    // Person author improves E-E-A-T over a generic Organization byline.
     author: {
-        "@type": "Organization",
+        "@type": "Person",
         name: article.author,
-        url: SITE_URL
+        ...(article.authorRole ? { jobTitle: article.authorRole } : {}),
+        worksFor: { "@id": `${SITE_URL}/#organization` },
     },
     publisher: {
         "@id": `${SITE_URL}/#organization`

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Loader2, CheckCircle2, ChevronDown } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -11,24 +11,76 @@ interface ContactModalProps {
     onClose: () => void;
 }
 
+const EMPTY_FORM = {
+    name: "",
+    email: "",
+    mobile: "",
+    company: "",
+    title: "",
+    inquiryType: "General",
+    description: "",
+    // Honeypot: must stay empty. Bots that fill every field trip this.
+    botField: "",
+};
+
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
     const { theme, resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
+    const modalRef = useRef<HTMLDivElement>(null);
+    const previouslyFocused = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
         setMounted(true);
     }, []);
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        mobile: "",
-        company: "",
-        title: "",
-        inquiryType: "General",
-        description: "",
-    });
+
+    // Escape-to-close, focus trap, and focus-return to the trigger element.
+    useEffect(() => {
+        if (!isOpen) return;
+
+        previouslyFocused.current = document.activeElement as HTMLElement | null;
+
+        const focusable = () =>
+            Array.from(
+                modalRef.current?.querySelectorAll<HTMLElement>(
+                    'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                ) ?? []
+            ).filter((el) => el.offsetParent !== null);
+
+        // Move focus into the dialog.
+        const first = focusable()[0];
+        first?.focus();
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") {
+                e.preventDefault();
+                onClose();
+                return;
+            }
+            if (e.key !== "Tab") return;
+            const items = focusable();
+            if (items.length === 0) return;
+            const firstEl = items[0];
+            const lastEl = items[items.length - 1];
+            if (e.shiftKey && document.activeElement === firstEl) {
+                e.preventDefault();
+                lastEl.focus();
+            } else if (!e.shiftKey && document.activeElement === lastEl) {
+                e.preventDefault();
+                firstEl.focus();
+            }
+        };
+
+        document.addEventListener("keydown", handleKeyDown);
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+            // Return focus to whatever opened the modal.
+            previouslyFocused.current?.focus?.();
+        };
+    }, [isOpen, onClose]);
+
+    const [formData, setFormData] = useState(EMPTY_FORM);
 
     const inquiryTypes = [
         "Select Inquiry Type",
@@ -57,15 +109,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 setTimeout(() => {
                     onClose();
                     setIsSuccess(false);
-                    setFormData({
-                        name: "",
-                        email: "",
-                        mobile: "",
-                        company: "",
-                        title: "",
-                        inquiryType: "General",
-                        description: "",
-                    });
+                    setFormData(EMPTY_FORM);
                 }, 3000);
             }
         } catch (error) {
@@ -97,6 +141,11 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     >
                         {/* Modal Container */}
                         <motion.div
+                            ref={modalRef}
+                            role="dialog"
+                            aria-modal="true"
+                            aria-labelledby="contact-modal-title"
+                            aria-describedby="contact-modal-desc"
                             initial={{ scale: 0.95, opacity: 0, y: 20 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -118,14 +167,16 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                             {/* Header */}
                             <div className="relative px-6 py-4 border-b border-white/40 dark:border-slate-700/50 flex justify-between items-center bg-white/80 dark:bg-slate-800/60 backdrop-blur-xl">
                                 <div>
-                                    <h3 className="text-xl font-heading font-semibold text-slate-900 dark:text-white drop-shadow-sm">Start Your Project</h3>
-                                    <p className="text-sm text-slate-700 dark:text-slate-300 drop-shadow-sm">Tell us about your embedded or IoT requirements</p>
+                                    <h3 id="contact-modal-title" className="text-xl font-heading font-semibold text-slate-900 dark:text-white drop-shadow-sm">Start Your Project</h3>
+                                    <p id="contact-modal-desc" className="text-sm text-slate-700 dark:text-slate-300 drop-shadow-sm">Tell us about your embedded or IoT requirements</p>
                                 </div>
                                 <button
+                                    type="button"
                                     onClick={onClose}
+                                    aria-label="Close contact form"
                                     className="p-2 rounded-full hover:bg-slate-200/50 dark:hover:bg-white/10 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors"
                                 >
-                                    <X className="w-5 h-5" />
+                                    <X className="w-5 h-5" aria-hidden="true" />
                                 </button>
                             </div>
 
@@ -143,6 +194,19 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                     </div>
                                 ) : (
                                     <form onSubmit={handleSubmit} className="space-y-6">
+                                        {/* Honeypot — hidden from humans, often filled by bots. */}
+                                        <div className="absolute left-[-9999px] top-[-9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+                                            <label htmlFor="botField">Do not fill this field</label>
+                                            <input
+                                                id="botField"
+                                                name="botField"
+                                                type="text"
+                                                tabIndex={-1}
+                                                autoComplete="off"
+                                                value={formData.botField}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
                                         <div className="grid md:grid-cols-2 gap-6">
                                             {/* Name */}
                                             <div className="space-y-2">

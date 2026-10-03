@@ -25,7 +25,7 @@ export default function SEOHead({
   const fullTitle = title ? `${title} | Tatvix Technologies` : "Tatvix Technologies - Embedded Systems & IoT Development";
   const metaDescription = description || "Leading embedded systems and IoT development company specializing in hardware design, firmware development, and complete product solutions.";
   const canonicalUrl = canonical ? `${SITE_URL}${canonical}` : SITE_URL;
-  const imageUrl = ogImage || `${SITE_URL}/og-image.jpg`;
+  const imageUrl = ogImage || `${SITE_URL}/opengraph-image`;
 
   return (
     <Head>

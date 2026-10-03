@@ -38,16 +38,29 @@ export const SEO_CONFIG = {
     bingSiteVerification: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION,
 };
 
-// Business Information for Local SEO
+// Brand assets (App Router file conventions auto-generate the favicon/OG image;
+// these are the explicit references used inside JSON-LD).
+export const LOGO_URL = `${SITE_URL}/Logo2.png`;
+export const OG_IMAGE_URL = `${SITE_URL}/opengraph-image`;
+
+// Business Information for Local SEO.
+// India HQ, global market. Real values come from .env.local; defaults below are
+// India-based (no placeholder/fake-US data) so schema is never penalized.
+// NOTE: set NEXT_PUBLIC_BUSINESS_ZIP in .env.local (currently a placeholder) — leave
+// `zip` empty rather than emitting "Your ZIP" into structured data.
+const rawZip = process.env.NEXT_PUBLIC_BUSINESS_ZIP;
 export const BUSINESS_INFO = {
     name: process.env.NEXT_PUBLIC_BUSINESS_NAME || "Tatvix Technologies",
-    phone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || "+1-XXX-XXX-XXXX",
+    phone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || "+91 8401301970",
     email: process.env.NEXT_PUBLIC_BUSINESS_EMAIL || "info@tatvixtech.com",
-    address: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS || "Your Business Address",
-    city: process.env.NEXT_PUBLIC_BUSINESS_CITY || "Your City",
-    state: process.env.NEXT_PUBLIC_BUSINESS_STATE || "Your State",
-    zip: process.env.NEXT_PUBLIC_BUSINESS_ZIP || "Your ZIP",
-    country: process.env.NEXT_PUBLIC_BUSINESS_COUNTRY || "United States",
+    address: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS || "Ahmedabad",
+    city: process.env.NEXT_PUBLIC_BUSINESS_CITY || "Ahmedabad",
+    state: process.env.NEXT_PUBLIC_BUSINESS_STATE || "Gujarat",
+    // Drop the "Your ZIP" placeholder so it never leaks into JSON-LD.
+    zip: rawZip && rawZip !== "Your ZIP" ? rawZip : "",
+    country: process.env.NEXT_PUBLIC_BUSINESS_COUNTRY || "India",
+    // ISO 3166-1 alpha-2 for schema addressCountry (more reliable than a free-text name).
+    countryCode: process.env.NEXT_PUBLIC_BUSINESS_COUNTRY_CODE || "IN",
     linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL || "https://www.linkedin.com/company/tatvix",
     twitter: process.env.NEXT_PUBLIC_TWITTER_URL || "https://twitter.com/tatvix",
     facebook: process.env.NEXT_PUBLIC_FACEBOOK_URL || "https://facebook.com/tatvix",

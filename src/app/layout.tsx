@@ -57,6 +57,8 @@ export const metadata: Metadata = {
       'msvalidate.01': SEO_CONFIG.bingSiteVerification || '',
     },
   },
+  // OG/Twitter images come from app/opengraph-image.tsx (file convention) — no
+  // explicit images here, so the missing /og-image.jpg is no longer referenced.
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -64,20 +66,11 @@ export const metadata: Metadata = {
     siteName: SEO_CONFIG.siteName,
     title: SEO_CONFIG.defaultTitle,
     description: SEO_CONFIG.siteDescription,
-    images: [
-      {
-        url: `${SITE_URL}/og-image.jpg`,
-        width: 1200,
-        height: 630,
-        alt: 'Tatvix Technologies - Embedded Systems & IoT Development',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: SEO_CONFIG.defaultTitle,
     description: SEO_CONFIG.siteDescription,
-    images: [`${SITE_URL}/og-image.jpg`],
     creator: '@tatvix',
     site: '@tatvix',
   },
@@ -105,9 +98,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        {/* Favicon + apple-touch-icon are auto-wired by app/icon.png and app/apple-icon.png. */}
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body

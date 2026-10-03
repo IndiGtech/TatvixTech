@@ -1,24 +1,33 @@
+import { Suspense } from "react";
+import dynamic from "next/dynamic";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import HashScroll from "@/components/HashScroll";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import ProductEcosystem from "@/components/ProductEcosystem";
-import ServicesGrid from "@/components/ServicesGrid";
-import IndustriesSection from "@/components/IndustriesSection";
-import AboutSection from "@/components/AboutSection";
-import TrustSection from "@/components/TrustSection";
-import BlogPreview from "@/components/BlogPreview";
-import CTASection from "@/components/CTASection";
-import Footer from "@/components/Footer";
-import StructuredData, { 
-  getFAQSchema, 
-  getLocalBusinessSchema, 
+import StructuredData, {
+  getFAQSchema,
+  getLocalBusinessSchema,
   getWebsiteSchema,
-  getBreadcrumbSchema 
+  getBreadcrumbSchema
 } from "@/components/StructuredData";
-import CertificationBadges from "@/components/CertificationBadges";
 import { faqData } from "@/data/faqData";
 import { SITE_URL } from "@/lib/site";
+
+// Below-the-fold, animation-heavy sections are code-split so their Framer Motion
+// payload is not in the initial bundle. They still render on the server (no
+// ssr:false) so content stays crawlable; only the client JS is deferred.
+const ProductEcosystem = dynamic(() => import("@/components/ProductEcosystem"));
+const ServicesGrid = dynamic(() => import("@/components/ServicesGrid"));
+const IndustriesSection = dynamic(() => import("@/components/IndustriesSection"));
+const TrustSection = dynamic(() => import("@/components/TrustSection"));
+const BlogPreview = dynamic(() => import("@/components/BlogPreview"));
+const AboutSection = dynamic(() => import("@/components/AboutSection"));
+const CTASection = dynamic(() => import("@/components/CTASection"));
+const Footer = dynamic(() => import("@/components/Footer"));
+
+function SectionFallback() {
+  return <div className="w-full min-h-[40vh]" aria-hidden />;
+}
 
 export default function Home() {
   const breadcrumbItems = [
@@ -35,16 +44,33 @@ export default function Home() {
       <HashScroll />
       <AnimatedBackground />
 
+      {/* Hero is eager — it drives LCP. */}
       <Hero />
-      <ProductEcosystem />
-      <ServicesGrid />
-      <IndustriesSection />
-      <TrustSection />
-      <BlogPreview />
-      <AboutSection />
-      <CTASection />
-      <Footer />
 
+      <Suspense fallback={<SectionFallback />}>
+        <ProductEcosystem />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <ServicesGrid />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <IndustriesSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <TrustSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <BlogPreview />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <AboutSection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <CTASection />
+      </Suspense>
+      <Suspense fallback={<SectionFallback />}>
+        <Footer />
+      </Suspense>
     </main>
   );
 }
